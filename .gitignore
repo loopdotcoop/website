@@ -16,10 +16,15 @@ Thumbs.db
 /searchreplacedb2.php
 
 
+# Hidden
+zZz/
+
+
 # WordPress Content
 /wp-content/index.php
 /wp-content/languages/
 /wp-content/upgrade/
+/wp-content/uploads/
 /wp-content/plugins/index.php
 /wp-content/plugins/jetpack/
 /wp-content/plugins/wp-super-cache/

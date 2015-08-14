@@ -1,34 +1,55 @@
 <?php
-/*
-Author: Eddie Machado
-URL: http://themble.com/bones/
 
-This is where you can drop your custom functions or
-just edit things like thumbnail sizes, header images,
-sidebars, comments, etc.
-*/
+//// `functions.php` is loaded early in WordPress. It's useful for defining 
+//// short custom functions, and defining things like thumbnail sizes, header 
+//// images, sidebars, and comments. 
 
-// LOAD BONES CORE (if you remove this, the theme will break)
-require_once( 'library/bones.php' );
+
+
+
+//// Load the Bones core. 
+require_once 'library/bones.php';
+
+
+
+
+//// Load development utilities. 
+require_once 'library/rp/rp-dev.php';   // `rp_dev()`
+require_once 'library/rp/rp-dump.php';  // `rp_dump()`
+require_once 'library/rp/rp-style.php'; // add `<STYLE>` to the `<HEAD>`
+
+
+
 
 // CUSTOMIZE THE WORDPRESS ADMIN (off by default)
-// require_once( 'library/admin.php' );
+// require_once 'library/admin.php';
 
 /*********************
 LAUNCH BONES
 Let's get everything up and running.
 *********************/
 
-function bones_ahoy() {
+//// Run basic setup, registration, and init actions for the theme. 
+//// Called during each page load, after the theme is initialized. 
+//// https://codex.wordpress.org/Plugin_API/Action_Reference/after_setup_theme
+add_action('after_setup_theme', 'ldc_theme_init');
+function ldc_theme_init() {
 
-  //Allow editor style.
+  // allow editor style
   add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
 
   // let's get language support going, if you need it
   load_theme_textdomain( 'bonestheme', get_template_directory() . '/library/translation' );
 
-  // USE THIS TEMPLATE TO CREATE CUSTOM POST TYPES EASILY
-  require_once( 'library/custom-post-type.php' );
+
+
+  //// Init CMB2. 
+  require_once 'library/cmb2/init.php';
+
+
+  //// Load custom post types. 
+  require_once 'cpt/cpt-chatter.php';
+
 
   // launching operation cleanup
   add_action( 'init', 'bones_head_cleanup' );
@@ -60,8 +81,6 @@ function bones_ahoy() {
 
 } /* end bones ahoy */
 
-// let's get this party started
-add_action( 'after_setup_theme', 'bones_ahoy' );
 
 
 /************* OEMBED SIZE OPTIONS *************/
