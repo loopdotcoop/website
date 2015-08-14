@@ -1,0 +1,67 @@
+/******************************************************************
+Version: 0.0.1
+Theme Name: Ldc
+Theme URI: https://github.com/loopdotcoop/website
+Description: The Loop.Coop website theme, based on the Bones Development Theme. 
+Author: Rich Plastow
+Author URI: http://richplastow.com/
+BonesVersion: 1.7
+Tags: fluid-layout, responsive-layout, accessibility-ready, translation-ready, microformats, rtl-language-support
+
+License: MIT
+
+
+MAKE SURE TO READ BELOW BEFORE GETTING STARTED FOR THE FIRST TIME!
+------------------------------------------------------------------
+
+You may be thinking…
+
+WHOA, WHOA, WHOA…WHAT HAPPENED HERE?
+
+But before you freak out, let me take a few minutes to explain.
+
+Bones now uses Sass by default. If you prefer using regular CSS,
+then feel free to modify this theme how you like and keep a copy
+as your own personal starting point.
+
+DON'T DISMISS IT JUST YET THOUGH, USING Sass ISN'T AS COMPLICATED AS YOU THINK.
+
+It does take a few minutes to wrap your head around, but it will all
+be worth it. Need a quick intro? Here are a few quick reads:
+
+http://simplebits.com/notebook/2013/11/13/sass-book/ (BUY THIS)
+http://cognition.happycog.com/article/preprocess-this
+http://viget.com/inspire/sass-a-designers-perspective
+http://ianstormtaylor.com/oocss-plus-sass-is-the-best-way-to-css/
+http://css-tricks.com/sass-style-guide/
+http://net.tutsplus.com/tutorials/html-css-techniques/developing-with-sass-and-chrome-devtools/
+
+I would HIGHLY RECOMMEND, if you are going to be working with Sass, that you work locally.
+The browsers don't understand Sass and compiling it on the server takes a bit
+of a setup.
+
+That being said, here are a few MUST HAVE TOOLS for working with a
+pre-processor: (You really only need one of them)
+
+CodeKit: (Highly Recommended)
+http://incident57.com/codekit/
+
+Compass App: (Windows / Mac Users)
+http://compass.handlino.com/
+
+These applications compile Sass into valid CSS. This
+way you can keep your production files easy to read and your
+CSS minified and speedy. Simply set the output to the
+library/css folder and you are all set. It's a thing of beauty.
+
+You can also setup auto compiling with Grunt or using Terminal on
+OSX. It's a bit complicated to setup so if you aren't familiar
+with it, just get one of the automated applications.
+
+******************************************************************/
+
+
+/* Keep Theme Check (http://wordpress.org/plugins/theme-check/) happy */
+.sticky {}
+.gallery-caption {}
+.bypostauthor {}
