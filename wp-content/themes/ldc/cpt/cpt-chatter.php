@@ -38,6 +38,7 @@ function ldc_chatter_table_content($column_name, $post_id) {
 //// https://wordpress.org/support/topic/admin-column-sorting
 //// http://scribu.net/wordpress/custom-sortable-columns.html#comment-4732
 //// @todo filter using custom fields
+//// @todo sort by type, not by URL
 add_filter('manage_edit-ldc_chatter_sortable_columns', 'ldc_chatter_table_sortable');
 function ldc_chatter_table_sortable($columns) {
   $columns['type'] = 'type';
@@ -130,7 +131,7 @@ function ldc_chatter_meta_define() {
 
   //// COMMON
 
-  //// The pw_chatter CPT only has one custom meta box. 
+  //// The ldc_chatter CPT only has one custom meta box. 
   $cmb_common = new_cmb2_box( array(
     'id'           => $prefix . 'custom',
     'title'        => __('Custom'),
@@ -155,7 +156,8 @@ function ldc_chatter_meta_define() {
 
 
 //// 20150814^RP  Convert a link URL like https://twitter.com/foo/status/123 to 
-//// a type like 'Twitter'. @todo get this working
+//// a type like 'Twitter'. 
+//// Used by cpt/cpt-chatter.php:ldc_chatter_table_content()
 function ldc_chatter_link_to_type($link) {
   if ( strpos($link, '://twitter.com/') )      { return 'Twitter';  }
   if ( strpos($link, '://facebook.com/') )     { return 'Facebook'; }

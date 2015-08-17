@@ -49,6 +49,8 @@ function ldc_theme_init() {
 
   //// Load custom post types. 
   require_once 'cpt/cpt-chatter.php';
+  require_once 'cpt/cpt-creation.php';
+  require_once 'cpt/cpt-event.php';
 
 
   // launching operation cleanup
