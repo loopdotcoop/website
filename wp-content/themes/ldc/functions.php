@@ -48,9 +48,13 @@ function ldc_theme_init() {
 
 
   //// Load custom post types. 
-  require_once 'cpt/cpt-chatter.php';
-  require_once 'cpt/cpt-creation.php';
-  require_once 'cpt/cpt-event.php';
+  require_once 'library/cpt/cpt-ldc_chatter.php';
+  require_once 'library/cpt/cpt-ldc_creation.php';
+  require_once 'library/cpt/cpt-ldc_event.php';
+
+
+  //// Load shortcodes. 
+  require_once 'library/sc/sc-ldc_list.php';
 
 
   // launching operation cleanup
