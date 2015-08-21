@@ -71,7 +71,7 @@ function ldc_creation_cpt_define() {
       'public'        => true,
       'has_archive'   => true,
       'labels'        => array(
-        'name'          => __('Creation'),
+        'name'          => __('Creations'),
         'singular_name' => __('Creation'),
         'add_new_item'  => __('Add New Creation'),
         'edit_item'     => __('Edit Creation'),

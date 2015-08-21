@@ -71,7 +71,7 @@ function ldc_event_cpt_define() {
       'public'        => true,
       'has_archive'   => true,
       'labels'        => array(
-        'name'          => __('Event'),
+        'name'          => __('Events'),
         'singular_name' => __('Event'),
         'add_new_item'  => __('Add New Event'),
         'edit_item'     => __('Edit Event'),
@@ -156,13 +156,15 @@ function ldc_event_meta_define() {
 
 
 //// 20150814^RP  Convert a link URL like https://twitter.com/foo/status/123 to 
-//// a type like 'Twitter'. 
+//// a type like 'Eventbrite'. 
 //// Used by cpt/cpt-event.php:ldc_event_table_content()
 function ldc_event_link_to_type($link) {
   if ( strpos($link, '://eventbrite.co.uk/') )     { return 'Eventbrite'; }
   if ( strpos($link, '://www.eventbrite.co.uk/') ) { return 'Eventbrite'; }
   if ( strpos($link, '://facebook.com/') )         { return 'Facebook';   }
   if ( strpos($link, '://www.facebook.com/') )     { return 'Facebook';   }
+  if ( strpos($link, '://www.meetup.com/') )       { return 'Meetup';     }
+  if ( strpos($link, '://meetup.com/') )           { return 'Meetup';     }
   return 'Error';
 }
 

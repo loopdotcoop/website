@@ -9,16 +9,25 @@
 add_shortcode('ldc_list', 'ldc_list_shortcode');
 function ldc_list_shortcode($atts = array()) {
 
-  //// Parse and validate shortcode attributes. 
-  //// @todo validate against all current post types
-  //// @todo show error in a comment, if none are found
-  $valid_type = array(
+  //// Define valid shortcode attributes. 
+  $valid_type = array( // @todo add all current post types
     'ldc_chatter' , // Chatter
     'ldc_creation', // Creation
     'ldc_event'   , // Event
   );
+  $valid_status = array(
+    'publish' ,   // (default) a published post or page
+    'pending',    // pending review
+    'draft',      // in draft status
+    'auto-draft', // a newly created post, with no content
+    'future',     // a post to publish in the future
+    'private',    // not visible to users who are not logged in
+    'inherit',    // a revision. see https://codex.wordpress.org/Function_Reference/get_children
+    'trash',      // post is in trashbin
+    'any',        // any status except those from post statuses with 'exclude_from_search' set to true (i.e. trash and auto-draft)
+  );
   $valid_orderby = array(
-    'date'    , // order by date
+    'date'    , // (default) order by date
     'none'    , // no order
     'ID'      , // order by post id. Note the capitalization
     'author'  , // order by author
@@ -28,44 +37,74 @@ function ldc_list_shortcode($atts = array()) {
     'rand'    , // random order
   );
   $valid_order = array(
-    'ASC' , // ascending order from lowest to highest values (1, 2, 3; a, b, c)
+    'ASC' , // (default) ascending order from lowest to highest values (1, 2, 3; a, b, c)
     'DESC', // descending order from highest to lowest values (3, 2, 1; c, b, a)
   );
+
+  //// Set defaults for missing attributes. 
   $atts = shortcode_atts( array(
     'type'     => $valid_type[0],
-    'category' => '',
-    'number'   => '-1', // show all by default
-    'offset'   => '0',  // no offset
+    'status'   => $valid_status[0],
     'orderby'  => $valid_orderby[0],
     'order'    => $valid_order[0],
+    'number'   => '-1', // show all by default
+    'offset'   => '0',  // no offset
+    'category' => '',
+    'class'    => false,
   ), $atts );
-  if (! in_array($atts['type'], $valid_type) )       { $atts['type']    = $valid_type[0]; }
-  if (! ctype_digit($atts['number']) )               { $atts['number']  = '-1'; }
-  if (! ctype_digit($atts['offset']) )               { $atts['number']  = '0';  }
-  if (! in_array($atts['orderby'], $valid_orderby) ) { $atts['orderby'] = $valid_orderby[0]; }
-  if (! in_array($atts['order']  , $valid_order  ) ) { $atts['order']   = $valid_order[0]; }
+
+  //// Prepare an array which will contain warnings (that is, not-quite-errors). 
+  $warnings = array();
+
+  //// Validate attributes. 
+  if (! ldc_list_validate($atts['type'],    $valid_type    ) )    { ldc_list_defaultize($warnings, $atts, 'type'    , $valid_type[0]);    }
+  if (! ldc_list_validate($atts['status'],  $valid_status  ) )    { ldc_list_defaultize($warnings, $atts, 'status'  , $valid_status[0]);  }
+  if (!          in_array($atts['orderby'], $valid_orderby) )     { ldc_list_defaultize($warnings, $atts, 'orderby' , $valid_orderby[0]); }
+  if (!          in_array($atts['order']  , $valid_order  ) )     { ldc_list_defaultize($warnings, $atts, 'order'   , $valid_order[0]);   }
+  if ('-1' !== $atts['number'] && ! ctype_digit($atts['number'])) { ldc_list_defaultize($warnings, $atts, 'number'  , '-1');              }
+  if (! ctype_digit($atts['offset']) )                            { ldc_list_defaultize($warnings, $atts, 'offset'  , '0');               }
 
   //// Begin the container <DIV>. 
   $out = array('<!-- BEGIN ' . rp_dev('List', 'ldc_list shortcode') . ' -->');
-  $out[] = '<div class="ldc-list">';
+  $out[] = '<div class="ldc-list' . ($atts['class'] ? ' ' . $atts['class'] : '') . '">';
   $out[] = '  <ul>';
 
-  //// Retrieve each post. 
-  $post_query = new WP_Query(
-    array(
-      'post_type'      => $atts['type'],
-      'posts_per_page' => $atts['number'],
-      'offset'         => $atts['offset'],
-      'orderby'        => $atts['orderby'],
-      'order'          => $atts['order'],
-      'post_status'    => 'publish', // prevent default WP behavior, where logged in users see private posts
-    )
+  //// Configure the query. 
+  $query_args = array(
+    'post_type'      => $atts['type'],
+    'post_status'    => $atts['status'],
+    'orderby'        => $atts['orderby'],
+    'order'          => $atts['order'],
+    'posts_per_page' => $atts['number'],
+    'offset'         => $atts['offset'],
   );
+  if ($atts['category']) {
+    $query_args['tax_query'] = array(array(
+      'taxonomy'       => $atts['type'] . '_category',
+      'field'          => 'slug',
+      'terms'          => $atts['category'],
+    ));
+  }
 
-  // Add each post to the output-array.
-  if (! $post_query->have_posts() ) {
-    $out[] = array('<!-- ' . rp_dev('No posts found', 'Nothing matches type:' . $atts['type'] . ' category:' . $atts['category']) . ' -->');
+  //// Retrieve matching posts. 
+  $post_query = new WP_Query($query_args);
+
+  //// Show any warnings. 
+  if (count($warnings)) {
+    $out[] =
+        '    <!-- '
+      . rp_dev(
+          count($warnings) . ' Shortcode Attribute Warning' . (1 == count($warnings) ? '' : 's'),
+          implode(" ... ", $warnings))
+      . ' -->'
+    ;
   } else {
+
+  }
+
+  //// Add each post to the output-array... 
+  if ($post_query->have_posts()) {
+
     while ( $post_query->have_posts() ) {
       $post_query->the_post();
       $post_id = get_the_id();
@@ -81,6 +120,18 @@ function ldc_list_shortcode($atts = array()) {
       $out[] = '      </div>';
       $out[] = '    </li>';
     };
+
+  //// ...or show an HTML comment. 
+  } else {
+
+    $out[] = '    <!-- ' . rp_dev('No posts found', 'Nothing matches'
+      .                      ' type:'      . $atts['type']
+      .                      ' status:'    . $atts['status']
+      .                      ' number:'    . $atts['number']
+      .                      ' offset:'    . $atts['offset']
+      . ($atts['category'] ? ' category:'  . $atts['category'] : '')
+      . ' -->'
+    );
   }
   
   //// Restore the $wp_query and global post data to the original main query. 
@@ -98,5 +149,45 @@ function ldc_list_shortcode($atts = array()) {
   $out = str_replace("    </li>\n    <li", "    </li><li", $out);
   return $out;
 }
+
+
+
+
+//// 20150821^RP  Validate a shortcode attribute. 
+//// Pass: `ldc_list_validate( 'nice,good'    , array('fair','nice','good') )`
+//// Fail: `ldc_list_validate( 'good,bad,ugly', array('fair','nice','good') )`
+//// Used by /sc/sc-ldc_list.php:ldc_list_shortcode()
+function ldc_list_validate($att, $valid) {
+
+  //// Convert a comma-delimited attribute to an array of sub-attributes. 
+  $sub_atts = explode(',', $att);
+
+  //// Validate each sub-attribute. 
+  foreach ($sub_atts as $sub_att) {
+    if (! in_array($sub_att, $valid) ) { return false; }
+  }
+
+  //// Nothing invalid found! 
+  return true;
+}
+
+
+
+
+//// 20150821^RP  Deal with an invalid attribute. 
+//// Usage: `ldc_list_defaultize($warnings, $atts, 'some-key','Some Default')`
+//// Used by /sc/sc-ldc_list.php:ldc_list_shortcode()
+function ldc_list_defaultize(&$warnings, &$atts, $att_name, $default) {
+
+  //// Add a warning. 
+  $warnings[] = "Attribute `$att_name` had invalid value. Used default '$default' instead";
+
+  //// Ue the default value. 
+  $atts[$att_name] = $default;
+
+}
+
+
+
 
 ?>
