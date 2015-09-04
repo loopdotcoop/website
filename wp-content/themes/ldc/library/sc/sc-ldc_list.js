@@ -8,7 +8,7 @@
 
   Main = (function() {
     function Main(config) {
-      this.me = 'sc/sc-ldc_list.js:Main()\n  ';
+      this.me = '/library/sc/sc-ldc_list.js:Main()\n  ';
       if ('function' !== typeof $) {
         throw Error(this.me + "No jQuery");
       }
@@ -16,20 +16,51 @@
       if (0 === this.$$listWraps.length) {
         return ª(this.me + "Warning: no '.ldc-list-wrap' elements found");
       }
-      this.$$listPosts = $('.ldc-list-post');
-      if (0 === this.$$listPosts.length) {
-        return ª(this.me + "Warning: no '.ldc-list-post' elements found");
-      }
+      this.initListWraps();
       this.initListPosts();
     }
+
+    Main.prototype.initListWraps = function() {
+      var main;
+      main = this;
+      this.$$listWraps.each(function() {
+        var $wrap;
+        $wrap = $(this);
+        $wrap.data('ldc-width', $wrap.width());
+        return main.resizePosts($wrap);
+      });
+      return $(window).on('resize', function() {
+        return main.$$listWraps.each(function() {
+          var $wrap;
+          $wrap = $(this);
+          if ($wrap.width() === $wrap.data('ldc-width')) {
+            return;
+          }
+          $wrap.data('ldc-width', $wrap.width());
+          return main.resizePosts($wrap);
+        });
+      });
+    };
+
+    Main.prototype.resizePosts = function($wrap) {
+      return $('.ldc-list-post', $wrap).each(function() {
+        var $post, aspectRatio;
+        $post = $(this);
+        aspectRatio = $post.attr('data-ldc-aspect-ratio' || 1);
+        return $post.height($post.width() * aspectRatio);
+      });
+    };
 
     Main.prototype.initListPosts = function() {
       var main;
       main = this;
-      return this.$$listPosts.on('click', function(event) {
-        main.$$listPosts.removeClass('ldc-focus');
-        return $(this).addClass('ldc-focus');
-      });
+      $('.ldc-list-post', this.$$listWraps).off('click', this.onListPostClick);
+      return $('.ldc-list-post', this.$$listWraps).on('click', this.onListPostClick);
+    };
+
+    Main.prototype.onListPostClick = function() {
+      $('.ldc-list-wrap .ldc-list-post').removeClass('ldc-focus');
+      return $(this).addClass('ldc-focus');
     };
 
     return Main;
@@ -37,7 +68,7 @@
   })();
 
   $(function() {
-    return window.sc_ldc_list = new Main;
+    return new Main;
   });
 
 }).call(this);

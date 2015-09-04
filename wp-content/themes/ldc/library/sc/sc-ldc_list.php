@@ -130,10 +130,15 @@ function ldc_list_shortcode($atts = array()) {
         . 'ldc-link-type-' . str_replace('.', '-', strtolower($link_type) )
         . '"';
 
-      //// If the post has a featured-image, show that as the background. 
+      //// If the post has a featured-image, show that as the background, and 
+      //// add a data-attribute so that JavaScript can assign the proper height. 
       if ($image_id) {
         $image_meta = wp_get_attachment_metadata($image_id, false);
-        $out[count($out)-1] .= ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "';
+        $out[count($out)-1] .=
+            ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "'
+          . ' data-ldc-aspect-ratio="' . ($image_meta['height'] / $image_meta['width']) . '"'
+        ;
+        // echo rp_dump($image_meta);
       }
 
       //// End the opening <LI> tag. 
