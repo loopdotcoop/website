@@ -35,6 +35,12 @@ Let's get everything up and running.
 add_action('after_setup_theme', 'ldc_theme_init');
 function ldc_theme_init() {
 
+  //// Eg allow /sc/sc-pdc_list.php to get the theme version. 
+  global $ldc_theme;
+  $ldc_theme = wp_get_theme();
+
+
+
   // allow editor style
   add_editor_style( get_stylesheet_directory_uri() . '/library/css/editor-style.css' );
 

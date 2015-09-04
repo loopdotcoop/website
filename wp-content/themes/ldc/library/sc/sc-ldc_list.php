@@ -9,6 +9,11 @@
 add_shortcode('ldc_list', 'ldc_list_shortcode');
 function ldc_list_shortcode($atts = array()) {
 
+  //// Load the clientside code and the stylesheet, if not already loaded. 
+  //// See /sc/sc-ldc_list.php:ldc_list_register_deps()
+  wp_enqueue_script('ldc_list_script');
+  wp_enqueue_style( 'ldc_list_style');
+
   //// Define valid shortcode attributes. 
   $valid_type = array( // @todo add all current post types
     'ldc_chatter' , // Chatter
@@ -51,6 +56,7 @@ function ldc_list_shortcode($atts = array()) {
     'offset'   => '0',  // no offset
     'category' => '',
     'class'    => false,
+    'linkkey'  => '',
   ), $atts );
 
   //// Prepare an array which will contain warnings (that is, not-quite-errors). 
@@ -64,9 +70,12 @@ function ldc_list_shortcode($atts = array()) {
   if ('-1' !== $atts['number'] && ! ctype_digit($atts['number'])) { ldc_list_defaultize($warnings, $atts, 'number'  , '-1');              }
   if (! ctype_digit($atts['offset']) )                            { ldc_list_defaultize($warnings, $atts, 'offset'  , '0');               }
 
+  //// Derive the link key from the type, if not explicitly set. 
+  if ('' == $atts['linkkey']) { $atts['linkkey'] = $atts['type'] . '_link'; }
+
   //// Begin the container <DIV>. 
   $out = array('<!-- BEGIN ' . rp_dev('List', 'ldc_list shortcode') . ' -->');
-  $out[] = '<div class="ldc-list' . ($atts['class'] ? ' ' . $atts['class'] : '') . '">';
+  $out[] = '<div class="ldc-list-wrap' . ($atts['class'] ? ' ' . $atts['class'] : '') . '">';
   $out[] = '  <ul>';
 
   //// Configure the query. 
@@ -87,7 +96,7 @@ function ldc_list_shortcode($atts = array()) {
   }
 
   //// Retrieve matching posts. 
-  $post_query = new WP_Query($query_args);
+  $posts = new WP_Query($query_args);
 
   //// Show any warnings. 
   if (count($warnings)) {
@@ -98,25 +107,42 @@ function ldc_list_shortcode($atts = array()) {
           implode(" ... ", $warnings))
       . ' -->'
     ;
-  } else {
-
   }
 
-  //// Add each post to the output-array... 
-  if ($post_query->have_posts()) {
+  //// Get the URL path to the media directory. 
+  $upload_dir  = wp_upload_dir();
+  $upload_base = $upload_dir['baseurl'];
 
-    while ( $post_query->have_posts() ) {
-      $post_query->the_post();
-      $post_id = get_the_id();
-      // $post_images      = get_post_custom_values( 'pw_list_image'     , $post_id );
-      // $post_subheadings = get_post_custom_values( 'pw_list_subheading', $post_id );
-      $out[] = '    <li class="ldc-list-outer" id="ldc-list-id-' . $post_id . '">';
-      // $out[] = '      <div class="look-portrait"><img class="face-me" src="' . $post_images[0] . '"></div>';
-      // $out[] = '      <div class="look-triangle"><div></div></div>';
-      $out[] = '      <div class="ldc-list-inner">';
-      $out[] = '        <h4>' . get_the_title() . '</h4>';
-      // $out[] = '        <h5>' . $post_subheadings[0]  . '</h5>';
-      $out[] = '        <p>'  . get_the_content() . '</p>';
+  //// Add each post to the output-array... 
+  if ($posts->have_posts()) {
+
+    while ($posts->have_posts()) {
+
+      //// Switch WP's focus to the current post, and begin the opening <LI> tag. 
+      $posts->the_post();
+      $post_id    = get_the_id();
+      $out[] = '    <li class="ldc-list-post" id="ldc-list-id-' . $post_id . '"';
+
+      //// If the post has a featured-image, show that as the background. 
+      $post_link  = get_post_meta($post_id, $atts['linkkey'], true);
+      $image_id   = get_post_thumbnail_id($post_id);
+      if ($image_id) {
+        $image_meta = wp_get_attachment_metadata($image_id, false);
+        $out[] = ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "';
+      }
+
+      //// End the opening <LI> tag. 
+      $out[] = '>';
+
+      $out[] = '      <div class="ldc-list-title">'; // CSS table-row
+      $out[] = '        <div>'; // table-cell
+      $out[] = '          <h4>' . get_the_title() . '</h4>';
+      $out[] = '        </div>';
+      $out[] = '      </div>';
+      $out[] = '      <div class="ldc-list-excerpt">'; // CSS table-row
+      $out[] = '        ' . ($post_link ? '<a href="' . $post_link . '" target="_blank">' : '<span>'); // table-cell
+      $out[] = '          <p>'  . get_the_excerpt() . '</p>';
+      $out[] = '        ' . ($post_link ? '</a>' : '</span>');
       $out[] = '      </div>';
       $out[] = '    </li>';
     };
@@ -150,6 +176,34 @@ function ldc_list_shortcode($atts = array()) {
   return $out;
 }
 
+
+
+
+//// 20150821^RP  Register the stylesheet and the clientside code. 
+//// See `wp_enqueue_script/style()` in /sc/sc-ldc_list.php:ldc_list_shortcode()
+//// https://codex.wordpress.org/Function_Reference/wp_register_script
+add_action('wp_enqueue_scripts', 'ldc_list_register_deps');
+function ldc_list_register_deps() {
+  global $ldc_theme;
+  $version = $ldc_theme->get('Version');
+
+  //// 
+  wp_register_script(
+    'ldc_list_script', // $handle
+    get_stylesheet_directory_uri() . '/library/sc/sc-ldc_list.js', // $src
+    array('jquery'),   // $deps
+    $version,          // $ver
+    true               // $in_footer
+  );
+
+  //// Basic styling for '.ldc-list' elements. 
+  wp_register_style(
+    'ldc_list_style',  // $handle
+    get_stylesheet_directory_uri() . '/library/sc/sc-ldc_list.css', // $src
+    array(),           // $deps
+    $version           // $ver
+  );
+}
 
 
 

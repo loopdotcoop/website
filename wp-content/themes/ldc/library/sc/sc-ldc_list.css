@@ -1,0 +1,91 @@
+/* WRAP */
+.ldc-list-wrap {
+  width: 100%;
+}
+
+
+/* TABLE */
+.ldc-list-post {
+  display: table;
+  width: 100%;
+  height: 400px;
+  background-size: 100%; /* height automatically set to auto */
+}
+.ldc-list-post.ldc-focus {
+
+}
+
+
+/* TABLE ROW */
+.ldc-list-post >div {
+  display: table-row;
+}
+.ldc-list-title {
+  background-color: rgba(0,255,0,0.7);
+  color:            rgba(255,255,255,1);
+  cursor: default;
+  -webkit-touch-callout: none; /* Android and iOS callouts*/
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE */
+            user-select: none;
+  -webkit-transition: all 0.5s;
+     -moz-transition: all 0.5s;
+       -o-transition: all 0.5s;
+          transition: all 0.5s;
+}
+.ldc-list-post.ldc-focus .ldc-list-title {
+  background-color: rgba(0,255,0,0);
+  color:            rgba(255,255,255,0);
+}
+.ldc-list-excerpt {
+}
+
+
+/* TABLE CELL */
+.ldc-list-post >div >* {
+  display:        table-cell;
+  text-align:     center;
+  vertical-align: middle;
+}
+.ldc-list-title h4 {
+  margin: 0;
+}
+.ldc-list-excerpt >a {
+  height: 1px;
+  text-decoration: none;
+  background-color: #333;
+  color: #ddd;
+  -webkit-transition: all 0.5s;
+     -moz-transition: all 0.5s;
+       -o-transition: all 0.5s;
+          transition: all 0.5s;
+}
+.ldc-list-excerpt >a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+
+/* CELL CONTENT */
+.ldc-list-excerpt >a >p {
+  margin: 0;
+  padding: 0 1em;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+     -moz-transition: all 0.5s;
+       -o-transition: all 0.5s;
+          transition: all 0.5s;
+}
+.ldc-list-post.ldc-focus .ldc-list-excerpt >a >p {
+  height: auto;
+  padding: 1em 1em;
+  opacity: 1;
+}
+
+
+
+
