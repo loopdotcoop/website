@@ -27,7 +27,7 @@ function ldc_chatter_table_head($defaults) {
 add_action('manage_ldc_chatter_posts_custom_column', 'ldc_chatter_table_content', 10, 2);
 function ldc_chatter_table_content($column_name, $post_id) {
   if ($column_name == 'type') {
-    echo ldc_chatter_link_to_type( get_post_meta($post_id, 'ldc_chatter_link', true) );
+    echo ldc_link_to_type( get_post_meta($post_id, 'ldc_chatter_link', true) );
   }
 }
 
@@ -150,19 +150,6 @@ function ldc_chatter_meta_define() {
   ));
 
 
-}
-
-
-
-
-//// 20150814^RP  Convert a link URL like https://twitter.com/foo/status/123 to 
-//// a type like 'Twitter'. 
-//// Used by cpt/cpt-chatter.php:ldc_chatter_table_content()
-function ldc_chatter_link_to_type($link) {
-  if ( strpos($link, '://twitter.com/') )      { return 'Twitter';  }
-  if ( strpos($link, '://facebook.com/') )     { return 'Facebook'; }
-  if ( strpos($link, '://www.facebook.com/') ) { return 'Facebook'; }
-  return 'Error';
 }
 
 

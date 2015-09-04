@@ -27,7 +27,7 @@ function ldc_creation_table_head($defaults) {
 add_action('manage_ldc_creation_posts_custom_column', 'ldc_creation_table_content', 10, 2);
 function ldc_creation_table_content($column_name, $post_id) {
   if ($column_name == 'type') {
-    echo ldc_creation_link_to_type( get_post_meta($post_id, 'ldc_creation_link', true) );
+    echo ldc_link_to_type( get_post_meta($post_id, 'ldc_creation_link', true) );
   }
 }
 
@@ -150,18 +150,6 @@ function ldc_creation_meta_define() {
   ));
 
 
-}
-
-
-
-
-//// 20150814^RP  Convert a link URL like https://twitter.com/foo/status/123 to 
-//// a type like 'Loop.Coop'. 
-//// Used by cpt/cpt-creation.php:ldc_creation_table_content()
-function ldc_creation_link_to_type($link) {
-  if ( strpos($link, 'loop.coop/') )  { return 'Loop.Coop'; }
-  if ( strpos($link, 'meteor.com/') ) { return 'Meteor';    }
-  return 'Error';
 }
 
 

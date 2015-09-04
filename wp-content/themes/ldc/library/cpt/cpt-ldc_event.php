@@ -27,7 +27,7 @@ function ldc_event_table_head($defaults) {
 add_action('manage_ldc_event_posts_custom_column', 'ldc_event_table_content', 10, 2);
 function ldc_event_table_content($column_name, $post_id) {
   if ($column_name == 'type') {
-    echo ldc_event_link_to_type( get_post_meta($post_id, 'ldc_event_link', true) );
+    echo ldc_link_to_type( get_post_meta($post_id, 'ldc_event_link', true) );
   }
 }
 
@@ -150,22 +150,6 @@ function ldc_event_meta_define() {
   ));
 
 
-}
-
-
-
-
-//// 20150814^RP  Convert a link URL like https://twitter.com/foo/status/123 to 
-//// a type like 'Eventbrite'. 
-//// Used by cpt/cpt-event.php:ldc_event_table_content()
-function ldc_event_link_to_type($link) {
-  if ( strpos($link, '://eventbrite.co.uk/') )     { return 'Eventbrite'; }
-  if ( strpos($link, '://www.eventbrite.co.uk/') ) { return 'Eventbrite'; }
-  if ( strpos($link, '://facebook.com/') )         { return 'Facebook';   }
-  if ( strpos($link, '://www.facebook.com/') )     { return 'Facebook';   }
-  if ( strpos($link, '://www.meetup.com/') )       { return 'Meetup';     }
-  if ( strpos($link, '://meetup.com/') )           { return 'Meetup';     }
-  return 'Error';
 }
 
 

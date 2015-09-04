@@ -118,21 +118,26 @@ function ldc_list_shortcode($atts = array()) {
 
     while ($posts->have_posts()) {
 
-      //// Switch WP's focus to the current post, and begin the opening <LI> tag. 
+      //// Switch WP's focus to the current post, and get various data from it. 
       $posts->the_post();
-      $post_id    = get_the_id();
-      $out[] = '    <li class="ldc-list-post" id="ldc-list-id-' . $post_id . '"';
+      $post_id   = get_the_id();
+      $post_link = get_post_meta($post_id, $atts['linkkey'], true);
+      $link_type = ldc_link_to_type($post_link);
+      $image_id  = get_post_thumbnail_id($post_id);
+
+      //// Begin the opening <LI> tag. 
+      $out[] = '    <li id="ldc-list-id-' . $post_id . '" class="ldc-list-post '
+        . 'ldc-link-type-' . str_replace('.', '-', strtolower($link_type) )
+        . '"';
 
       //// If the post has a featured-image, show that as the background. 
-      $post_link  = get_post_meta($post_id, $atts['linkkey'], true);
-      $image_id   = get_post_thumbnail_id($post_id);
       if ($image_id) {
         $image_meta = wp_get_attachment_metadata($image_id, false);
-        $out[] = ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "';
+        $out[count($out)-1] .= ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "';
       }
 
       //// End the opening <LI> tag. 
-      $out[] = '>';
+      $out[count($out)-1] .= '>';
 
       $out[] = '      <div class="ldc-list-title">'; // CSS table-row
       $out[] = '        <div>'; // table-cell
@@ -141,7 +146,7 @@ function ldc_list_shortcode($atts = array()) {
       $out[] = '      </div>';
       $out[] = '      <div class="ldc-list-excerpt">'; // CSS table-row
       $out[] = '        ' . ($post_link ? '<a href="' . $post_link . '" target="_blank">' : '<span>'); // table-cell
-      $out[] = '          <p>'  . get_the_excerpt() . '</p>';
+      $out[] = '          <p>'  . trim(get_the_excerpt()) . '</p>';
       $out[] = '        ' . ($post_link ? '</a>' : '</span>');
       $out[] = '      </div>';
       $out[] = '    </li>';
