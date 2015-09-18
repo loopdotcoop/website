@@ -54,6 +54,7 @@
 }
 .ldc-list-title h4 {
   margin: 0;
+  padding: 0 1em;
 }
 .ldc-list-excerpt >a {
   height: 1px;
@@ -143,7 +144,14 @@
 
 
 
+/* LISTING */
+.ldc-listing li {
+  margin-bottom: 24px;
+}
 
+.ldc-listing.ldc-3-col li {
+  position: absolute;
+}
 
 
 

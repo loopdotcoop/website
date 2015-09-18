@@ -88,17 +88,25 @@ which sets each list-post to the proper initial height.
 
         @$$listings.each ->
           $listingWrap = $ @
-          $listingWrap.data 'ldc-width', $listingWrap.width()
-          main.resizePosts $listingWrap
+          width = $listingWrap.width()
+          $listingWrap.data 'ldc-width', width
+          if 808 <= width
+            main.resizePosts $listingWrap, 3, (width - 24 - 24) / 3
+          else
+            main.resizePosts $listingWrap, 1, width
 
 Run `resizePosts()` every time a list-wrap element’s width changes. 
 
         $(window).on 'resize', ->
           main.$$listings.each ->
             $listingWrap = $ @
-            if $listingWrap.width() != $listingWrap.data 'ldc-width'
-              $listingWrap.data 'ldc-width', $listingWrap.width()
-              main.resizePosts $listingWrap
+            width = $listingWrap.width()
+            if width != $listingWrap.data 'ldc-width'
+              $listingWrap.data 'ldc-width', width
+              if 808 <= width
+                main.resizePosts $listingWrap, 3, (width - 24 - 24) / 3
+              else
+                main.resizePosts $listingWrap, 1, width
 
 
 
@@ -107,11 +115,45 @@ Run `resizePosts()` every time a list-wrap element’s width changes.
 Change the height of each listing list-post so that their background-images are 
 fully visible. 
 
-      resizePosts: ($listingWrap) ->
-        $('.ldc-list-post', $listingWrap).each ->
+      resizePosts: ($listingWrap, cols, width) ->
+        colH = [0,0,0]
+        $('.ldc-list-post', $listingWrap).each (i) ->
           $post = $ @
           aspectRatio = $post.attr 'data-ldc-aspect-ratio' or 1
-          $post.height $post.width() * aspectRatio
+          height = width * aspectRatio
+          $post.width  width
+          $post.height height
+          if 3 == cols
+            switch i % 3
+              when 0
+                $post.css
+                  'margin-left': 0 # in case set previously
+                  'margin-top':  colH[0]
+                colH[0] += height + 24
+              when 1
+                $post.css
+                  'margin-left': width + 24
+                  'margin-top':  colH[1]
+                colH[1] += height + 24
+              when 2
+                $post.css
+                  'margin-left': width + 24 + width + 24
+                  'margin-top':  colH[2]
+                colH[2] += height + 24
+          else
+            $post.css
+              'margin-left': 0 # in case set previously
+              'margin-top':  0 # in case set previously
+
+
+        if 3 == cols
+          $listingWrap
+            .height Math.max colH[0], colH[1], colH[2]
+            .addClass 'ldc-3-col'
+        else
+          $listingWrap
+            .height 'auto'
+            .removeClass 'ldc-3-col'
 
 
 

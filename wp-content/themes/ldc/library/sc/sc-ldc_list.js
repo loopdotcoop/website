@@ -29,30 +29,76 @@
       var main;
       main = this;
       this.$$listings.each(function() {
-        var $listingWrap;
+        var $listingWrap, width;
         $listingWrap = $(this);
-        $listingWrap.data('ldc-width', $listingWrap.width());
-        return main.resizePosts($listingWrap);
+        width = $listingWrap.width();
+        $listingWrap.data('ldc-width', width);
+        if (808 <= width) {
+          return main.resizePosts($listingWrap, 3, (width - 24 - 24) / 3);
+        } else {
+          return main.resizePosts($listingWrap, 1, width);
+        }
       });
       return $(window).on('resize', function() {
         return main.$$listings.each(function() {
-          var $listingWrap;
+          var $listingWrap, width;
           $listingWrap = $(this);
-          if ($listingWrap.width() !== $listingWrap.data('ldc-width')) {
-            $listingWrap.data('ldc-width', $listingWrap.width());
-            return main.resizePosts($listingWrap);
+          width = $listingWrap.width();
+          if (width !== $listingWrap.data('ldc-width')) {
+            $listingWrap.data('ldc-width', width);
+            if (808 <= width) {
+              return main.resizePosts($listingWrap, 3, (width - 24 - 24) / 3);
+            } else {
+              return main.resizePosts($listingWrap, 1, width);
+            }
           }
         });
       });
     };
 
-    Main.prototype.resizePosts = function($listingWrap) {
-      return $('.ldc-list-post', $listingWrap).each(function() {
-        var $post, aspectRatio;
+    Main.prototype.resizePosts = function($listingWrap, cols, width) {
+      var colH;
+      colH = [0, 0, 0];
+      $('.ldc-list-post', $listingWrap).each(function(i) {
+        var $post, aspectRatio, height;
         $post = $(this);
         aspectRatio = $post.attr('data-ldc-aspect-ratio' || 1);
-        return $post.height($post.width() * aspectRatio);
+        height = width * aspectRatio;
+        $post.width(width);
+        $post.height(height);
+        if (3 === cols) {
+          switch (i % 3) {
+            case 0:
+              $post.css({
+                'margin-left': 0,
+                'margin-top': colH[0]
+              });
+              return colH[0] += height + 24;
+            case 1:
+              $post.css({
+                'margin-left': width + 24,
+                'margin-top': colH[1]
+              });
+              return colH[1] += height + 24;
+            case 2:
+              $post.css({
+                'margin-left': width + 24 + width + 24,
+                'margin-top': colH[2]
+              });
+              return colH[2] += height + 24;
+          }
+        } else {
+          return $post.css({
+            'margin-left': 0,
+            'margin-top': 0
+          });
+        }
       });
+      if (3 === cols) {
+        return $listingWrap.height(Math.max(colH[0], colH[1], colH[2])).addClass('ldc-3-col');
+      } else {
+        return $listingWrap.height('auto').removeClass('ldc-3-col');
+      }
     };
 
     Main.prototype.initListPosts = function() {
