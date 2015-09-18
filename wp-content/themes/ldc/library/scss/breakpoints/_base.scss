@@ -75,6 +75,24 @@ LAYOUT & GRID STYLES
 	margin: 0 auto;
 }
 
+
+
+
+/*********************
+CAROUSEL
+*********************/
+.ldc-carousel {
+  overflow: hidden;
+
+  ul {
+  	margin: 0;
+  }
+
+}
+
+
+
+
 /*********************
 LINK STYLES
 *********************/
@@ -257,9 +275,7 @@ POSTS & CONTENT STYLES
 
 		.hentry {
 			background-color: $white;
-			border-radius: 3px;
 			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
 
 			header {
 				border-bottom: 1px solid $light-gray;

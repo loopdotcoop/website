@@ -250,4 +250,239 @@ them however you see fit.
     width: 8.33%;
   }
 
-} // end desktop styles
+} // end small desktop styles
+
+/* Small desktop to wide desktop */
+@media (min-width: 1240px) {
+
+  .w-all  {
+    @include grid-col;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .w-1of2 {
+    @include grid-col;
+    width: 50%;
+  }
+
+  .w-1of3 {
+    @include grid-col;
+    width: 33.33%;
+  }
+
+  .w-2of3 {
+    @include grid-col;
+    width: 66.66%;
+  }
+
+  .w-1of4 {
+    @include grid-col;
+    width: 25%;
+  }
+
+  .w-3of4 {
+    @include grid-col;
+    width: 75%;
+  }
+
+  .w-1of5 {
+    @include grid-col;
+    width: 20%;
+  }
+
+  .w-2of5 {
+    @include grid-col;
+    width: 40%;
+  }
+
+  .w-3of5 {
+    @include grid-col;
+    width: 60%;
+  }
+
+  .w-4of5 {
+    @include grid-col;
+    width: 80%;
+  }
+
+  .w-1of6 {
+    @include grid-col;
+    width: 16.6666666667%;
+  }
+
+  .w-1of7 {
+    @include grid-col;
+    width: 14.2857142857%;
+  }
+
+  .w-2of7 {
+    @include grid-col;
+    width: 28.5714286%;
+  }
+
+  .w-3of7 {
+    @include grid-col;
+    width: 42.8571429%;
+  }
+
+  .w-4of7 {
+    @include grid-col;
+    width: 57.1428572%;
+  }
+
+  .w-5of7 {
+    @include grid-col;
+    width: 71.4285715%;
+  }
+
+  .w-6of7 {
+    @include grid-col;
+    width: 85.7142857%;
+  }
+
+  .w-1of8 {
+    @include grid-col;
+    width: 12.5%;
+  }
+
+  .w-1of9 {
+    @include grid-col;
+    width: 11.1111111111%;
+  }
+
+  .w-1of10 {
+    @include grid-col;
+    width: 10%;
+  }
+
+  .w-1of11 {
+    @include grid-col;
+    width: 9.09090909091%;
+  }
+
+  .w-1of12 {
+    @include grid-col;
+    width: 8.33%;
+  }
+
+} // end wide desktop styles
+
+/* Wide desktop to HD (1080p) */
+@media (min-width: 1600px) {
+
+  .h-all  {
+    @include grid-col;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .h-1of2 {
+    @include grid-col;
+    width: 50%;
+  }
+
+  .h-1of3 {
+    @include grid-col;
+    width: 33.33%;
+  }
+
+  .h-2of3 {
+    @include grid-col;
+    width: 66.66%;
+  }
+
+  .h-1of4 {
+    @include grid-col;
+    width: 25%;
+  }
+
+  .h-3of4 {
+    @include grid-col;
+    width: 75%;
+  }
+
+  .h-1of5 {
+    @include grid-col;
+    width: 20%;
+  }
+
+  .h-2of5 {
+    @include grid-col;
+    width: 40%;
+  }
+
+  .h-3of5 {
+    @include grid-col;
+    width: 60%;
+  }
+
+  .h-4of5 {
+    @include grid-col;
+    width: 80%;
+  }
+
+  .h-1of6 {
+    @include grid-col;
+    width: 16.6666666667%;
+  }
+
+  .h-1of7 {
+    @include grid-col;
+    width: 14.2857142857%;
+  }
+
+  .h-2of7 {
+    @include grid-col;
+    width: 28.5714286%;
+  }
+
+  .h-3of7 {
+    @include grid-col;
+    width: 42.8571429%;
+  }
+
+  .h-4of7 {
+    @include grid-col;
+    width: 57.1428572%;
+  }
+
+  .h-5of7 {
+    @include grid-col;
+    width: 71.4285715%;
+  }
+
+  .h-6of7 {
+    @include grid-col;
+    width: 85.7142857%;
+  }
+
+  .h-1of8 {
+    @include grid-col;
+    width: 12.5%;
+  }
+
+  .h-1of9 {
+    @include grid-col;
+    width: 11.1111111111%;
+  }
+
+  .h-1of10 {
+    @include grid-col;
+    width: 10%;
+  }
+
+  .h-1of11 {
+    @include grid-col;
+    width: 9.09090909091%;
+  }
+
+  .h-1of12 {
+    @include grid-col;
+    width: 8.33%;
+  }
+
+} // end HD (1080p) styles
+
+
+

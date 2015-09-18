@@ -8,42 +8,46 @@
 
   Main = (function() {
     function Main(config) {
-      this.me = '/library/sc/sc-ldc_list.js:Main()\n  ';
+      var M;
+      M = "/library/sc/sc-ldc_list.litcoffee Main()\n  ";
       if ('function' !== typeof $) {
-        throw Error(this.me + "No jQuery");
+        throw Error(M + "No jQuery");
       }
       this.$$listWraps = $('.ldc-list-wrap');
       if (0 === this.$$listWraps.length) {
-        return ª(this.me + "Warning: no '.ldc-list-wrap' elements found");
+        ª(M + "Warning: no '.ldc-list-wrap' elements found");
       }
-      this.initListWraps();
+      this.$$listings = $('.ldc-listing');
+      if (0 === this.$$listings.length) {
+        ª(M + "Warning: no '.ldc-listing' elements found");
+      }
+      this.initListings();
       this.initListPosts();
     }
 
-    Main.prototype.initListWraps = function() {
+    Main.prototype.initListings = function() {
       var main;
       main = this;
-      this.$$listWraps.each(function() {
-        var $wrap;
-        $wrap = $(this);
-        $wrap.data('ldc-width', $wrap.width());
-        return main.resizePosts($wrap);
+      this.$$listings.each(function() {
+        var $listingWrap;
+        $listingWrap = $(this);
+        $listingWrap.data('ldc-width', $listingWrap.width());
+        return main.resizePosts($listingWrap);
       });
       return $(window).on('resize', function() {
-        return main.$$listWraps.each(function() {
-          var $wrap;
-          $wrap = $(this);
-          if ($wrap.width() === $wrap.data('ldc-width')) {
-            return;
+        return main.$$listings.each(function() {
+          var $listingWrap;
+          $listingWrap = $(this);
+          if ($listingWrap.width() !== $listingWrap.data('ldc-width')) {
+            $listingWrap.data('ldc-width', $listingWrap.width());
+            return main.resizePosts($listingWrap);
           }
-          $wrap.data('ldc-width', $wrap.width());
-          return main.resizePosts($wrap);
         });
       });
     };
 
-    Main.prototype.resizePosts = function($wrap) {
-      return $('.ldc-list-post', $wrap).each(function() {
+    Main.prototype.resizePosts = function($listingWrap) {
+      return $('.ldc-list-post', $listingWrap).each(function() {
         var $post, aspectRatio;
         $post = $(this);
         aspectRatio = $post.attr('data-ldc-aspect-ratio' || 1);

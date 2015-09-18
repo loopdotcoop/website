@@ -36,9 +36,11 @@ Main Class
     class Main
 
       constructor: (config) ->
-        @me = '/library/sc/sc-ldc_list.js:Main()\n  '
+        M = "/library/sc/sc-ldc_list.litcoffee
+          Main()\n  "
 
-        if 'function' != typeof $ then throw Error @me + "No jQuery"
+        if 'function' != typeof $ then throw Error "
+          #{M}No jQuery"
 
 
 
@@ -50,13 +52,21 @@ Main Properties
 jQuery references to each '.ldc-list-wrap' element. 
 
         @$$listWraps = $ '.ldc-list-wrap'
-        if 0 == @$$listWraps.length
-          return ª @me + "Warning: no '.ldc-list-wrap' elements found"
+        if 0 == @$$listWraps.length then ª "
+          #{M}Warning: no '.ldc-list-wrap' elements found"
+
+
+#### `$$listings <NodeList>`
+jQuery references to each '.ldc-listing' element. 
+
+        @$$listings = $ '.ldc-listing'
+        if 0 == @$$listings.length then ª "
+          #{M}Warning: no '.ldc-listing' elements found"
 
 
 Initialize the app. 
 
-        @initListWraps()
+        @initListings()
         @initListPosts()
 
 
@@ -66,39 +76,39 @@ Main Init Methods
 -----------------
 
 
-#### `initListWraps()`
-Initialize each '.ldc-list-wrap' element. 
+#### `initListings()`
+Initialize each '.ldc-listing' element. 
 
-      initListWraps: ->
+      initListings: ->
         main = @
 
 Record the initial width of each list-wrap. When the window width changes, we 
 will check whether each list-wrap’s width has changed. Then run `resizePosts()`,
 which sets each list-post to the proper initial height. 
 
-        @$$listWraps.each ->
-          $wrap = $ @
-          $wrap.data 'ldc-width', $wrap.width()
-          main.resizePosts $wrap
+        @$$listings.each ->
+          $listingWrap = $ @
+          $listingWrap.data 'ldc-width', $listingWrap.width()
+          main.resizePosts $listingWrap
 
 Run `resizePosts()` every time a list-wrap element’s width changes. 
 
         $(window).on 'resize', ->
-          main.$$listWraps.each ->
-            $wrap = $ @
-            if $wrap.width() == $wrap.data 'ldc-width' then return # no change
-            $wrap.data 'ldc-width', $wrap.width()
-            main.resizePosts $wrap
+          main.$$listings.each ->
+            $listingWrap = $ @
+            if $listingWrap.width() != $listingWrap.data 'ldc-width'
+              $listingWrap.data 'ldc-width', $listingWrap.width()
+              main.resizePosts $listingWrap
 
 
 
 
 #### `resizePosts()`
-Change the height of each list-post so that their background-images are fully 
-visible. 
+Change the height of each listing list-post so that their background-images are 
+fully visible. 
 
-      resizePosts: ($wrap) ->
-        $('.ldc-list-post', $wrap).each ->
+      resizePosts: ($listingWrap) ->
+        $('.ldc-list-post', $listingWrap).each ->
           $post = $ @
           aspectRatio = $post.attr 'data-ldc-aspect-ratio' or 1
           $post.height $post.width() * aspectRatio

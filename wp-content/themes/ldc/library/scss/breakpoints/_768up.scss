@@ -24,8 +24,21 @@ LAYOUT & GRID STYLES
 *********************/
 
 .wrap {
-	width: 760px;
+  width: 24px + 20px + 634px + 20px + 24px;
 }
+
+
+/* CAROUSEL */
+.ldc-carousel {
+  width:   20px + 634px + 20px;
+  height: (20px + 634px + 20px) / 3.2;
+
+  ul li {
+    height: (20px + 634px + 20px) / 3.2;
+  }
+
+}
+
 
 /*********************
 HEADER STYLES
