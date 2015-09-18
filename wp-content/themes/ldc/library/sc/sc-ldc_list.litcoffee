@@ -1,7 +1,7 @@
 Clientside List Shortcode
 =========================
 
-#### Included inline by /sc/sc-ldc_list.php
+#### Included inline by /library/sc/sc-ldc_list.php
 
 To watch and compile automatically, from the theme directory: 
 ```bash
@@ -112,6 +112,21 @@ added to the DOM.
 
       initListPosts: ->
         main = @
+
+Position each list-post absolutely.  
+@todo probably delete this and just MOVE posts between 3-column grid and 1-column grid
+
+        #@$$listWraps.each ->
+        #  $wrap = $ @
+        #  y = 0
+        #  $('.ldc-list-post', $wrap).each ->
+        #    $post = $ @
+        #    $post.css
+        #      position: 'absolute'
+        #      width: $wrap.width()
+        #      top:   y
+        #    y += $post.height()
+        #  $wrap.height y
 
 Add a click handler to each list-post, Note that we remove the click handler 
 first, in case `initListPosts()` is being re-run after new posts were added to 

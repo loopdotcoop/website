@@ -9,9 +9,9 @@
 require_once 'library/bones.php';
 
 //// Load development utilities. 
-require_once 'library/rp/rp-rp_dev_style.php'; // add `<STYLE>` to the `<HEAD>`
-require_once 'library/rp/rp-rp_dev.php';       // `rp_dev()`
-require_once 'library/rp/rp-rp_dump.php';      // `rp_dump()`
+require_once 'library/rp/rp_dev_style.php'; // add `<STYLE>` to the `<HEAD>`
+require_once 'library/rp/rp_dev.php';       // `rp_dev()`
+require_once 'library/rp/rp_dump.php';      // `rp_dump()`
 
 //// Load helper functions. 
 require_once 'library/fn/fn-ldc_link_to_type.php'; // `ldc_link_to_type()`

@@ -1,5 +1,5 @@
 <?php
-//// 20150814^RP 0.0.1
+//// 20150910^RP 0.0.2
 //// Add a `<STYLE>` block to the `<HEAD>` for development. 
 
 add_action('wp_head'   , 'rp_dev_style'); // frontend
@@ -19,6 +19,9 @@ function rp_dev_style() {
     border: 1px solid #999;
     border-radius: 8px;
     background-color: #fff;
+  }
+  .rp-dump-wrap pre {
+    font: 12px/18px monaco, monospace;
   }
   body.wp-admin .rp-other {
     background-color: #e8e8e8;
