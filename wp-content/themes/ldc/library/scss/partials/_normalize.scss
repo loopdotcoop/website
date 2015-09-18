@@ -161,13 +161,14 @@ hr {
 
 /*
  * proper formatting (http://blog.fontdeck.com/post/9037028497/hyphens)
+ * 20150918^RP  change from `auto` to `none`
 */
 
 p {
-  -webkit-hyphens: auto;
-  -epub-hyphens:   auto;
-  -moz-hyphens:    auto;
-  hyphens:         auto;
+  -webkit-hyphens: none;
+  -epub-hyphens:   none;
+  -moz-hyphens:    none;
+  hyphens:         none;
 
 }
 

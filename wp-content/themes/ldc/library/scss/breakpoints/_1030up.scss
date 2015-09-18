@@ -14,6 +14,12 @@ be seen on the Desktop.
 }
 
 
+/* [ldc_list] shortcode */
+.ldc-list-excerpt >a >p {
+  font-size: 0.8046875em;
+}
+
+
 /* CAROUSEL */
 .ldc-carousel {
   width:   20px + 768px + 20px;

@@ -94,9 +94,9 @@ p {
   -ms-word-wrap: break-word;
   word-break: break-word;
   word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none;
   -webkit-hyphenate-before: 2;
   -webkit-hyphenate-after: 3;
   hyphenate-lines: 3;
@@ -447,13 +447,19 @@ be seen on the Desktop.
   width: 856px;
 }
 
-/* CAROUSEL */
+/* [ldc_list] shortcode */
 /* line 18, ../scss/breakpoints/_1030up.scss */
+.ldc-list-excerpt > a > p {
+  font-size: 0.8046875em;
+}
+
+/* CAROUSEL */
+/* line 24, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel {
   width: 808px;
   height: 252.5px;
 }
-/* line 22, ../scss/breakpoints/_1030up.scss */
+/* line 28, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel ul li {
   height: 252.5px;
 }

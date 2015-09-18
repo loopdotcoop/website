@@ -151,7 +151,7 @@ function ldc_list_shortcode($atts = array()) {
       $out[] = '      </div>';
       $out[] = '      <div class="ldc-list-excerpt">'; // CSS table-row
       $out[] = '        ' . ($post_link ? '<a href="' . $post_link . '" target="_blank">' : '<span>'); // table-cell
-      $out[] = '          <p>'  . trim(get_the_excerpt()) . '</p>';
+      $out[] = '          <p>'  . the_excerpt_max_charlength(140) . '</p>';
       $out[] = '        ' . ($post_link ? '</a>' : '</span>');
       $out[] = '      </div>';
       $out[] = '    </li>';

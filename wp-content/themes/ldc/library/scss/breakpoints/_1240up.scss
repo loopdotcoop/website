@@ -15,6 +15,12 @@ on larger screens.
 }
 
 
+/* [ldc_list] shortcode */
+.ldc-list-excerpt >a >p {
+  font-size: 0.96875em;
+}
+
+
 /* CAROUSEL */
 .ldc-carousel {
   width:   20px + 1030px + 20px;
@@ -23,5 +29,6 @@ on larger screens.
   ul li {
     height: (20px + 1030px + 20px) / 3.2;
   }
+
 
 }

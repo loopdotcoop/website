@@ -55,6 +55,14 @@
 .ldc-list-title h4 {
   margin: 0;
   padding: 0 1em;
+  line-height: auto;
+  -webkit-transition: line-height 0.4s;
+     -moz-transition: line-height 0.4s;
+       -o-transition: line-height 0.4s;
+          transition: line-height 0.4s;
+}
+.ldc-list-post.ldc-focus .ldc-list-title h4 {
+  line-height: 0.2;
 }
 .ldc-list-excerpt >a {
   height: 1px;
@@ -75,17 +83,32 @@
   margin: 0;
   padding: 0 1em;
   height: 0;
+  max-height: 8em;
   overflow: hidden;
   opacity: 0;
-  -webkit-transition: all 0.5s;
-     -moz-transition: all 0.5s;
-       -o-transition: all 0.5s;
-          transition: all 0.5s;
+  line-height: 1.35;
+  -webkit-transition: padding 0.3s, opacity 0.4s;
+     -moz-transition: padding 0.3s, opacity 0.4s;
+       -o-transition: padding 0.3s, opacity 0.4s;
+          transition: padding 0.3s, opacity 0.4s;
 }
 .ldc-list-post.ldc-focus .ldc-list-excerpt >a >p {
   height: auto;
-  padding: 1em 1em;
+  padding: .7em 1em 1em 1em;
   opacity: 1;
+}
+
+
+/* Various mobile breakpoints */
+@media (max-width: 450px) {
+  .ldc-list-excerpt >a >p {
+    font-size: 0.96875em;
+  }
+}
+@media (max-width: 370px) {
+  .ldc-list-excerpt >a >p {
+    font-size: 0.8046875em;
+  }
 }
 
 

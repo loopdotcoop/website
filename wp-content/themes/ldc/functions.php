@@ -273,4 +273,28 @@ function bones_fonts() {
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
 
+
+
+//// From https://codex.wordpress.org/Function_Reference/get_the_excerpt
+function the_excerpt_max_charlength($charlength) {
+  $excerpt = get_the_excerpt();
+  $charlength++;
+  $out = '';
+
+  if ( mb_strlen($excerpt) < $charlength ) {
+    return $excerpt;
+  }
+
+  $subex = mb_substr($excerpt, 0, $charlength - 5);
+  $exwords = explode(' ', $subex);
+  $excut = - ( mb_strlen($exwords[ count( $exwords ) - 1 ]) );
+  if (0 > $excut) {
+    $out .= mb_substr($subex, 0, $excut);
+  } else {
+    $out .= $subex;
+  }
+  return trim($out) . '&hellip;';
+}
+
+
 /* DON'T DELETE THIS CLOSING TAG */ ?>
