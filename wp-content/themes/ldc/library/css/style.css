@@ -1862,7 +1862,7 @@ CAROUSEL
 
 /* [ldc_list] shortcode */
 /* line 95, ../scss/breakpoints/_base.scss */
-.ldc-list-excerpt > a > p {
+.ldc-list-excerpt > a p {
   font-size: 1.25em;
 }
 
@@ -2793,7 +2793,7 @@ you can add resource intensive styles.
 
   /* [ldc_list] shortcode */
   /* line 18, ../scss/breakpoints/_1030up.scss */
-  .ldc-list-excerpt > a > p {
+  .ldc-list-excerpt > a p {
     font-size: 0.8046875em;
   }
 
@@ -2830,7 +2830,7 @@ This is for the larger monitors and possibly full screen viewers.
 
   /* [ldc_list] shortcode */
   /* line 19, ../scss/breakpoints/_1240up.scss */
-  .ldc-list-excerpt > a > p {
+  .ldc-list-excerpt > a p {
     font-size: 0.96875em;
   }
 
@@ -2872,7 +2872,7 @@ This is for 1080p monitors.
   }
 
   /* line 21, ../scss/breakpoints/_1600up.scss */
-  .ldc-list-excerpt > a > p {
+  .ldc-list-excerpt > a p {
     font-size: 1.2em;
   }
 

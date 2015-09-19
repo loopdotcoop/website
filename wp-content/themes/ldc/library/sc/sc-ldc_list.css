@@ -8,18 +8,27 @@
 .ldc-list-post {
   display: table;
   width: 100%;
-  height: 400px;
+  opacity: 1;
   background-size: 100%; /* height automatically set to auto */
+  -webkit-transition: opacity 1s;
+     -moz-transition: opacity 1s;
+       -o-transition: opacity 1s;
+          transition: opacity 1s;
 }
-.ldc-list-post.ldc-focus {
-
+.ldc-preload .ldc-list-post {
+  opacity: 0;
 }
-
+.ldc-list-post >div.ldc-list-excerpt >a >div {
+  display: table;
+  width: 100%;
+}
 
 /* TABLE ROW */
-.ldc-list-post >div {
+.ldc-list-post >div,
+.ldc-list-post >div.ldc-list-excerpt >a >div >div {
   display: table-row;
 }
+
 .ldc-list-title {
   color: rgba(255,255,255,.6);
   cursor: pointer;
@@ -47,14 +56,15 @@
 
 
 /* TABLE CELL */
-.ldc-list-post >div >* {
-  display:        table-cell;
-  text-align:     center;
+.ldc-list-post >div >*,
+.ldc-list-post >div.ldc-list-excerpt >a >div >div >* {
+  display: table-cell;
   vertical-align: middle;
 }
 .ldc-list-title h4 {
   margin: 0;
   padding: 0 1em;
+  text-align: center;
   line-height: auto;
   -webkit-transition: line-height 0.4s;
      -moz-transition: line-height 0.4s;
@@ -79,34 +89,69 @@
 
 
 /* CELL CONTENT */
-.ldc-list-excerpt >a >p {
+.ldc-list-excerpt >a p {
   margin: 0;
-  padding: 0 1em;
+  padding: 0 0 0 1em;
+  overflow: hidden;
+  opacity: 0.2;
+  line-height: 0.2;
+  -webkit-transition: padding 0.3s, opacity 0.4s, line-height 0.2s;
+     -moz-transition: padding 0.3s, opacity 0.4s, line-height 0.2s;
+       -o-transition: padding 0.3s, opacity 0.4s, line-height 0.2s;
+          transition: padding 0.3s, opacity 0.4s, line-height 0.2s;
+}
+.ldc-list-post.ldc-focus .ldc-list-excerpt >a p {
+  height: auto;
+  padding: .7em 0 .75em 1em;
+  opacity: 1;
+  line-height: 1.35;
+}
+.ldc-list-post.ldc-focus .ldc-list-excerpt >a p span {
+  height: auto;
+}
+.ldc-list-excerpt >a p span {
+  position: relative;
+  display: block;
   height: 0;
   max-height: 8em;
-  overflow: hidden;
-  opacity: 0;
-  line-height: 1.35;
-  -webkit-transition: padding 0.3s, opacity 0.4s;
-     -moz-transition: padding 0.3s, opacity 0.4s;
-       -o-transition: padding 0.3s, opacity 0.4s;
-          transition: padding 0.3s, opacity 0.4s;
 }
-.ldc-list-post.ldc-focus .ldc-list-excerpt >a >p {
-  height: auto;
-  padding: .7em 1em 1em 1em;
-  opacity: 1;
+.ldc-list-excerpt >a p.ldc-arrow {
+  width: 3em;
+  padding: 0 0 0 3em;
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+       -o-transition: all 0.2s;
+          transition: all 0.2s;
 }
+.ldc-list-post.ldc-focus .ldc-list-excerpt >a p.ldc-arrow {
+  padding: 0.05em 0 0 0.5em;
+}
+.ldc-list-post.ldc-focus .ldc-list-excerpt >a:hover p.ldc-arrow {
+  padding: 0 0 0 0.25em;
+}
+.ldc-list-excerpt >a p span.dashicons-controls-play {
+  font-size: 2.25em;
+  color: rgba(255,255,255,0.7);
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+       -o-transition: all 0.2s;
+          transition: all 0.2s;
+}
+.ldc-list-excerpt >a:hover p span.dashicons-controls-play {
+  font-size: 2.75em;
+  color: rgba(255,255,255,1);
+}
+
 
 
 /* Various mobile breakpoints */
 @media (max-width: 450px) {
-  .ldc-list-excerpt >a >p {
+  .ldc-list-excerpt >a p {
     font-size: 0.96875em;
   }
 }
 @media (max-width: 370px) {
-  .ldc-list-excerpt >a >p {
+  .ldc-list-excerpt >a p {
     font-size: 0.8046875em;
   }
 }

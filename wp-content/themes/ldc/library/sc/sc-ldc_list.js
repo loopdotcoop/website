@@ -34,10 +34,11 @@
         width = $listingWrap.width();
         $listingWrap.data('ldc-width', width);
         if (808 <= width) {
-          return main.resizePosts($listingWrap, 3, (width - 24 - 24) / 3);
+          main.resizePosts($listingWrap, 3, (width - 24 - 24) / 3);
         } else {
-          return main.resizePosts($listingWrap, 1, width);
+          main.resizePosts($listingWrap, 1, width);
         }
+        return $listingWrap.removeClass('ldc-preload');
       });
       return $(window).on('resize', function() {
         return main.$$listings.each(function() {

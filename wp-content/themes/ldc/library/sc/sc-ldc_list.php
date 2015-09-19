@@ -11,8 +11,10 @@ function ldc_list_shortcode($atts = array()) {
 
   //// Load the clientside code and the stylesheet, if not already loaded. 
   //// See /sc/sc-ldc_list.php:ldc_list_register_deps()
+  //// http://jameskoster.co.uk/work/using-wordpress-3-8s-dashicons-theme-plugin/
   wp_enqueue_script('ldc_list_script');
   wp_enqueue_style( 'ldc_list_style');
+  wp_enqueue_style('dashicons');
 
   //// Define valid shortcode attributes. 
   $valid_type = array( // @todo add all current post types
@@ -75,7 +77,7 @@ function ldc_list_shortcode($atts = array()) {
 
   //// Begin the container <DIV>. 
   $out = array('<!-- BEGIN ' . rp_dev('List', 'ldc_list shortcode') . ' -->');
-  $out[] = '<div class="ldc-list-wrap' . ($atts['class'] ? ' ' . $atts['class'] : '') . '">';
+  $out[] = '<div class="ldc-list-wrap ldc-preload' . ($atts['class'] ? ' ' . $atts['class'] : '') . '">';
   $out[] = '  <ul>';
 
   //// Configure the query. 
@@ -151,7 +153,12 @@ function ldc_list_shortcode($atts = array()) {
       $out[] = '      </div>';
       $out[] = '      <div class="ldc-list-excerpt">'; // CSS table-row
       $out[] = '        ' . ($post_link ? '<a href="' . $post_link . '" target="_blank">' : '<span>'); // table-cell
-      $out[] = '          <p>'  . the_excerpt_max_charlength(140) . '</p>';
+      $out[] = '          <div>'; // CSS table
+      $out[] = '            <div>'; // CSS table-row
+      $out[] = '              <p><span>'  . the_excerpt_max_charlength(140) . '</span></p>'; // CSS table-cell
+      $out[] = '              <p class="ldc-arrow"><span class="dashicons dashicons-controls-play"></span></p>';
+      $out[] = '            </div>';
+      $out[] = '          </div>';
       $out[] = '        ' . ($post_link ? '</a>' : '</span>');
       $out[] = '      </div>';
       $out[] = '    </li>';

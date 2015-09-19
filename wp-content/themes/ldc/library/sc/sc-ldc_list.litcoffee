@@ -94,6 +94,7 @@ which sets each list-post to the proper initial height.
             main.resizePosts $listingWrap, 3, (width - 24 - 24) / 3
           else
             main.resizePosts $listingWrap, 1, width
+          $listingWrap.removeClass 'ldc-preload'
 
 Run `resizePosts()` every time a list-wrap element’s width changes. 
 
