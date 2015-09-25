@@ -251,7 +251,7 @@ function ldc_list_validate($att, $valid) {
 function ldc_list_defaultize(&$warnings, &$atts, $att_name, $default) {
 
   //// Add a warning. 
-  $warnings[] = "Attribute `$att_name` had invalid value. Used default '$default' instead";
+  $warnings[] = "Attribute `$att_name` had invalid value '$atts[$att_name]'. Used default '$default' instead";
 
   //// Ue the default value. 
   $atts[$att_name] = $default;

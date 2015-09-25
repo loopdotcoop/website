@@ -892,8 +892,13 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	background-color: $black;
 	color: $light-gray;
+
+	//// 20150925^RP Quick footer style
+	background-color: rgba( 59, 89,152,0.65); // was $black;
+  color: rgba(255,255,255,.8);
+	mix-blend-mode: hard-light;
+
 }
 
 	/*
