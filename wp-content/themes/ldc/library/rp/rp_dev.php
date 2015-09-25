@@ -6,7 +6,7 @@
 //// usage examples and licensing info. 
 
 
-//// `rp-dev.php` can be `require`d multiple times without causing errors. 
+//// `rp_dev.php` can be `require`d multiple times without causing errors. 
 if (! function_exists('rp_dev')) {
 
   function rp_dev($title='', $dev_message='') {

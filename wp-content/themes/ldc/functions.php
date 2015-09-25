@@ -13,6 +13,10 @@ require_once 'library/rp/rp_dev_style.php'; // add `<STYLE>` to the `<HEAD>`
 require_once 'library/rp/rp_dev.php';       // `rp_dev()`
 require_once 'library/rp/rp_dump.php';      // `rp_dump()`
 
+//// Load various filters and actions, and enqueue scripts and stylesheets. 
+require_once 'library/rp/rp_slugify_bodytag.php'; // `rp_slugify_bodytag()`
+require_once 'library/rp/rp_enqueue.php';         // `rp_enqueue()`
+
 //// Load helper functions. 
 require_once 'library/fn/fn-ldc_link_to_type.php'; // `ldc_link_to_type()`
 
@@ -33,7 +37,7 @@ Let's get everything up and running.
 add_action('after_setup_theme', 'ldc_theme_init');
 function ldc_theme_init() {
 
-  //// Eg allow /sc/sc-pdc_list.php to get the theme version. 
+  //// Eg allow /sc/sc-ldc_list.php to get the theme version. 
   global $ldc_theme;
   $ldc_theme = wp_get_theme();
 

@@ -82,14 +82,24 @@ LAYOUT & GRID STYLES
 CAROUSEL
 *********************/
 .ldc-carousel {
+  margin: 40px 0 24px 0;
   overflow: hidden;
+
+//  height: (20px + 634px + 20px) / 3.2;
+  height: 400px;
 
   ul {
   	margin: 0;
   }
+  ul li {
+    // height: (20px + 634px + 20px) / 3.2;
+    height: 400px;
+  }
 
 }
-
+.ldc-carousel .ldc-list-post {
+  background-size: cover; /* override 100% in sc-ldc_list */
+}
 
 /* [ldc_list] shortcode */
 .ldc-list-excerpt >a p {
@@ -175,7 +185,7 @@ HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
+	background-color: transparent; // was $black
 }
 
 	#logo {
@@ -278,17 +288,17 @@ POSTS & CONTENT STYLES
 }
 
 		.hentry {
-			background-color: $white;
+			background-color: transparent; // was $white
 			margin-bottom: 1.5em;
 
 			header {
-				border-bottom: 1px solid $light-gray;
+				// border-bottom: 1px solid $light-gray;
 				padding: 1.5em;
 			}
 
 			footer {
 				padding: 1.5em;
-				border-top: 1px solid $light-gray;
+				// border-top: 1px solid $light-gray;
 
 				p {
 					margin: 0;

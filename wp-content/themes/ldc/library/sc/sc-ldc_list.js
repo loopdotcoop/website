@@ -17,13 +17,28 @@
       if (0 === this.$$listWraps.length) {
         ª(M + "Warning: no '.ldc-list-wrap' elements found");
       }
+      this.$$carousels = $('.ldc-carousel');
+      if (0 === this.$$carousels.length) {
+        ª(M + "Warning: no '.ldc-carousel' elements found");
+      }
       this.$$listings = $('.ldc-listing');
       if (0 === this.$$listings.length) {
         ª(M + "Warning: no '.ldc-listing' elements found");
       }
+      this.initCarousels();
       this.initListings();
       this.initListPosts();
     }
+
+    Main.prototype.initCarousels = function() {
+      var main;
+      main = this;
+      return this.$$carousels.each(function() {
+        var $carouselWrap;
+        $carouselWrap = $(this);
+        return $carouselWrap.removeClass('ldc-preload');
+      });
+    };
 
     Main.prototype.initListings = function() {
       var main;

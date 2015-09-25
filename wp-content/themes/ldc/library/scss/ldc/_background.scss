@@ -1,0 +1,44 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Background
+
+Xx. @todo describe
+
+******************************************************************/
+
+/*********************
+GENERAL STYLES
+*********************/
+
+.ldc-bkgnd {
+	background-size: cover;
+	background-position: center 0; // 'center' is good for mobile. `0` will be modified by JS
+	z-index: -1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+/********************
+PAGE-SPECIFIC
+********************/
+
+body.rp-slug-front-page .ldc-bkgnd {
+	background-image: url(/wp-content/uploads/2015/_layout/ldc-space-texture-05-WIDE2.jpg);
+}
+body.rp-slug-about      .ldc-bkgnd {
+	background-image: url(/wp-content/uploads/2015/_layout/ldc-about-jungle-08-WIDE2.jpg);
+}
+body.rp-slug-chatter    .ldc-bkgnd {
+	background-image: url(/wp-content/uploads/2015/_layout/ldc-chatter-arctic-04-WIDE2.jpg);
+}
+body.rp-slug-events     .ldc-bkgnd {
+	background-image: url(/wp-content/uploads/2015/_layout/ldc-events-desert-12-WIDE2.jpg);
+}
+body.rp-slug-creations  .ldc-bkgnd {
+	background-image: url(/wp-content/uploads/2015/_layout/ldc-creations-sea-12-WIDE2.jpg);
+}

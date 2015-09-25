@@ -63,7 +63,7 @@ function ldc_chatter_table_orderby($vars) {
 
 //// 20150814^RP  Define the 'Chatter' custom post type and categories. 
 //// https://codex.wordpress.org/Function_Reference/register_post_type
-add_action('init', 'ldc_chatter_cpt_define');
+add_action('cmb2_init', 'ldc_chatter_cpt_define');
 function ldc_chatter_cpt_define() {
 
   register_post_type('ldc_chatter',

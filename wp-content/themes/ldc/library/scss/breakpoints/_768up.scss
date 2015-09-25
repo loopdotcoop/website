@@ -28,8 +28,19 @@ LAYOUT & GRID STYLES
 }
 
 
+/* HEADER */
+#inner-header nav {
+  font-size: 0.8em;
+	>ul >li {
+  	padding: 0 8px;
+  }
+}
+
+
 /* CAROUSEL */
 .ldc-carousel {
+  margin-top: 80px;
+
   width:   20px + 634px + 20px;
   height: (20px + 634px + 20px) / 3.2;
 

@@ -23,6 +23,8 @@ on larger screens.
 
 /* CAROUSEL */
 .ldc-carousel {
+  margin-top: 120px;
+
   width:   20px + 1030px + 20px;
   height: (20px + 1030px + 20px) / 3.2;
 
@@ -30,5 +32,11 @@ on larger screens.
     height: (20px + 1030px + 20px) / 3.2;
   }
 
+  .ldc-list-title h4 {
+    font-size: 2.7em;
+  }
+  .ldc-list-excerpt >a p {
+    font-size: 1.3em;
+  }
 
 }

@@ -9,6 +9,7 @@
   display: table;
   width: 100%;
   opacity: 1;
+  background-position: center;
   background-size: 100%; /* height automatically set to auto */
   -webkit-transition: opacity 1s;
      -moz-transition: opacity 1s;
@@ -34,6 +35,7 @@
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2px;
+  mix-blend-mode: hard-light;
   -webkit-touch-callout: none; /* Android and iOS callouts*/
     -webkit-user-select: none; /* Chrome, Safari, Opera */
      -khtml-user-select: none; /* Konqueror */
@@ -73,6 +75,9 @@
 }
 .ldc-list-post.ldc-focus .ldc-list-title h4 {
   line-height: 0.2;
+}
+.ldc-list-excerpt {
+  mix-blend-mode: hard-light;
 }
 .ldc-list-excerpt >a {
   height: 1px;
@@ -158,29 +163,17 @@
 
 
 /* COLOR BACKGROUNDS */
-.ldc-list-post.ldc-link-type-twitter    .ldc-list-excerpt >a  { background-color: rgba(  0,132,180,0.85); } /* http://designpieces.com/2012/12/twitter-colour-palette/ */
-.ldc-list-post.ldc-link-type-facebook   .ldc-list-excerpt >a  { background-color: rgba( 59, 89,152,0.85); } /* http://designpieces.com/2012/12/social-media-colours-hex-and-rgb/ */
-.ldc-list-post.ldc-link-type-tumblr     .ldc-list-excerpt >a  { background-color: rgba( 50, 80,109,0.85); } 
-.ldc-list-post.ldc-link-type-pinterest  .ldc-list-excerpt >a  { background-color: rgba(203, 32, 39,0.85); } 
-.ldc-list-post.ldc-link-type-eventbrite .ldc-list-excerpt >a  { background-color: rgba(255, 80,  0,0.85); }
-.ldc-list-post.ldc-link-type-vimeo      .ldc-list-excerpt >a  { background-color: rgba( 68,187,255,0.85); }
-.ldc-list-post.ldc-link-type-meetup     .ldc-list-excerpt >a  { background-color: rgba(224, 57, 62,0.85); }
-.ldc-list-post.ldc-link-type-loopcoop   .ldc-list-excerpt >a  { background-color: rgba(255,  0,255,0.85); }
-.ldc-list-post.ldc-link-type-rpos       .ldc-list-excerpt >a  { background-color: rgba(  0,255  ,0,0.85); }
-.ldc-list-post.ldc-link-type-meteor     .ldc-list-excerpt >a  { background-color: rgba(168, 54, 54,0.85); }
-.ldc-list-post.ldc-link-type-other      .ldc-list-excerpt >a  { background-color: rgba(  0,255,  0,0.85); }
-
-.ldc-list-post.ldc-link-type-twitter    .ldc-list-excerpt >a:hover { background-color: rgba(  0,132,180,0.95); } /* http://designpieces.com/2012/12/twitter-colour-palette/ */
-.ldc-list-post.ldc-link-type-facebook   .ldc-list-excerpt >a:hover { background-color: rgba( 59, 89,152,0.95); } /* http://designpieces.com/2012/12/social-media-colours-hex-and-rgb/ */
-.ldc-list-post.ldc-link-type-tumblr     .ldc-list-excerpt >a:hover { background-color: rgba( 50, 80,109,0.95); } 
-.ldc-list-post.ldc-link-type-pinterest  .ldc-list-excerpt >a:hover { background-color: rgba(203, 32, 39,0.95); } 
-.ldc-list-post.ldc-link-type-eventbrite .ldc-list-excerpt >a:hover { background-color: rgba(255, 80,  0,0.95); }
-.ldc-list-post.ldc-link-type-vimeo      .ldc-list-excerpt >a:hover { background-color: rgba( 68,187,255,0.95); }
-.ldc-list-post.ldc-link-type-meetup     .ldc-list-excerpt >a:hover { background-color: rgba(224, 57, 62,0.95); }
-.ldc-list-post.ldc-link-type-loopcoop   .ldc-list-excerpt >a:hover { background-color: rgba(255,  0,255,0.95); }
-.ldc-list-post.ldc-link-type-rpos       .ldc-list-excerpt >a:hover { background-color: rgba(  0,255  ,0,0.95); }
-.ldc-list-post.ldc-link-type-meteor     .ldc-list-excerpt >a:hover { background-color: rgba(168, 54, 54,0.95); }
-.ldc-list-post.ldc-link-type-other      .ldc-list-excerpt >a:hover { background-color: rgba(  0,255,  0,0.95); }
+.ldc-list-post.ldc-link-type-twitter    .ldc-list-excerpt  { background-color: rgba(  0,132,180,0.8); } /* http://designpieces.com/2012/12/twitter-colour-palette/ */
+.ldc-list-post.ldc-link-type-facebook   .ldc-list-excerpt  { background-color: rgba( 59, 89,152,0.8); } /* http://designpieces.com/2012/12/social-media-colours-hex-and-rgb/ */
+.ldc-list-post.ldc-link-type-tumblr     .ldc-list-excerpt  { background-color: rgba( 50, 80,109,0.8); } 
+.ldc-list-post.ldc-link-type-pinterest  .ldc-list-excerpt  { background-color: rgba(203, 32, 39,0.8); } 
+.ldc-list-post.ldc-link-type-eventbrite .ldc-list-excerpt  { background-color: rgba(255, 80,  0,0.8); }
+.ldc-list-post.ldc-link-type-vimeo      .ldc-list-excerpt  { background-color: rgba( 68,187,255,0.8); }
+.ldc-list-post.ldc-link-type-meetup     .ldc-list-excerpt  { background-color: rgba(224, 57, 62,0.8); }
+.ldc-list-post.ldc-link-type-loopcoop   .ldc-list-excerpt  { background-color: rgba(255,  0,255,0.8); }
+.ldc-list-post.ldc-link-type-rpos       .ldc-list-excerpt  { background-color: rgba(  0,255  ,0,0.8); }
+.ldc-list-post.ldc-link-type-meteor     .ldc-list-excerpt  { background-color: rgba(168, 54, 54,0.8); }
+.ldc-list-post.ldc-link-type-other      .ldc-list-excerpt  { background-color: rgba(  0,255,  0,0.8); }
 
 /* COLOR OVERLAYS */
 .ldc-list-post.ldc-link-type-twitter    .ldc-list-title       { background-color: rgba(  0,132,180,0.8); } /* http://designpieces.com/2012/12/twitter-colour-palette/ */
@@ -211,8 +204,11 @@
 .ldc-list-post.ldc-focus                .ldc-list-title { background-color: rgba(  0,  0,  0,0.0); }
 
 
-
 /* LISTING */
+.ldc-listing ul {
+  margin: 0;
+}
+
 .ldc-listing li {
   margin-bottom: 24px;
 }
@@ -220,8 +216,6 @@
 .ldc-listing.ldc-3-col li {
   position: absolute;
 }
-
-
 
 
 

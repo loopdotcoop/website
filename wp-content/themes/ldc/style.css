@@ -1,5 +1,5 @@
 /******************************************************************
-Version: 0.0.13
+Version: 0.0.14
 Theme Name: Ldc
 Theme URI: https://github.com/loopdotcoop/website
 Description: The Loop.Coop website theme, based on the Bones Development Theme. 
@@ -57,6 +57,10 @@ library/css folder and you are all set. It's a thing of beauty.
 You can also setup auto compiling with Grunt or using Terminal on
 OSX. It's a bit complicated to setup so if you aren't familiar
 with it, just get one of the automated applications.
+
+```bash
+compass watch library/scss/
+```
 
 ******************************************************************/
 

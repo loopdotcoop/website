@@ -63,7 +63,7 @@ function ldc_event_table_orderby($vars) {
 
 //// 20150817^RP  Define the 'Event' custom post type and categories. 
 //// https://codex.wordpress.org/Function_Reference/register_post_type
-add_action('init', 'ldc_event_cpt_define');
+add_action('cmb2_init', 'ldc_event_cpt_define');
 function ldc_event_cpt_define() {
 
   register_post_type('ldc_event',

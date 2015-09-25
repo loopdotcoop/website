@@ -56,6 +56,14 @@ jQuery references to each '.ldc-list-wrap' element.
           #{M}Warning: no '.ldc-list-wrap' elements found"
 
 
+#### `$$carousels <NodeList>`
+jQuery references to each '.ldc-carousel' element. 
+
+        @$$carousels = $ '.ldc-carousel'
+        if 0 == @$$carousels.length then ª "
+          #{M}Warning: no '.ldc-carousel' elements found"
+
+
 #### `$$listings <NodeList>`
 jQuery references to each '.ldc-listing' element. 
 
@@ -66,6 +74,7 @@ jQuery references to each '.ldc-listing' element.
 
 Initialize the app. 
 
+        @initCarousels()
         @initListings()
         @initListPosts()
 
@@ -74,6 +83,18 @@ Initialize the app.
 
 Main Init Methods
 -----------------
+
+
+#### `initCarousels()`
+Initialize each '.ldc-carousel' element. 
+
+      initCarousels: ->
+        main = @
+
+        @$$carousels.each ->
+          $carouselWrap = $ @
+          $carouselWrap.removeClass 'ldc-preload'
+
 
 
 #### `initListings()`

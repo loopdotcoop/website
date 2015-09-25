@@ -11,10 +11,8 @@ function ldc_list_shortcode($atts = array()) {
 
   //// Load the clientside code and the stylesheet, if not already loaded. 
   //// See /sc/sc-ldc_list.php:ldc_list_register_deps()
-  //// http://jameskoster.co.uk/work/using-wordpress-3-8s-dashicons-theme-plugin/
   wp_enqueue_script('ldc_list_script');
   wp_enqueue_style( 'ldc_list_style');
-  wp_enqueue_style('dashicons');
 
   //// Define valid shortcode attributes. 
   $valid_type = array( // @todo add all current post types
@@ -59,6 +57,7 @@ function ldc_list_shortcode($atts = array()) {
     'category' => '',
     'class'    => false,
     'linkkey'  => '',
+    'truncate' => 140,
   ), $atts );
 
   //// Prepare an array which will contain warnings (that is, not-quite-errors). 
@@ -71,6 +70,7 @@ function ldc_list_shortcode($atts = array()) {
   if (!          in_array($atts['order']  , $valid_order  ) )     { ldc_list_defaultize($warnings, $atts, 'order'   , $valid_order[0]);   }
   if ('-1' !== $atts['number'] && ! ctype_digit($atts['number'])) { ldc_list_defaultize($warnings, $atts, 'number'  , '-1');              }
   if (! ctype_digit($atts['offset']) )                            { ldc_list_defaultize($warnings, $atts, 'offset'  , '0');               }
+  if (! ctype_digit('' . $atts['truncate']) )                     { ldc_list_defaultize($warnings, $atts, 'truncate', 140);               }
 
   //// Derive the link key from the type, if not explicitly set. 
   if ('' == $atts['linkkey']) { $atts['linkkey'] = $atts['type'] . '_link'; }
@@ -155,7 +155,7 @@ function ldc_list_shortcode($atts = array()) {
       $out[] = '        ' . ($post_link ? '<a href="' . $post_link . '" target="_blank">' : '<span>'); // table-cell
       $out[] = '          <div>'; // CSS table
       $out[] = '            <div>'; // CSS table-row
-      $out[] = '              <p><span>'  . the_excerpt_max_charlength(140) . '</span></p>'; // CSS table-cell
+      $out[] = '              <p><span>'  . the_excerpt_max_charlength($atts['truncate']) . '</span></p>'; // CSS table-cell
       $out[] = '              <p class="ldc-arrow"><span class="dashicons dashicons-controls-play"></span></p>';
       $out[] = '            </div>';
       $out[] = '          </div>';

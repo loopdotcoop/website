@@ -13,6 +13,14 @@ be seen on the Desktop.
   width: 24px + 20px + 768px + 20px + 24px;
 }
 
+/* HEADER */
+#inner-header nav {
+  font-size: 1em;
+  >ul >li {
+    padding: 0 12px;
+  }
+}
+
 
 /* [ldc_list] shortcode */
 .ldc-list-excerpt >a p {
@@ -22,11 +30,20 @@ be seen on the Desktop.
 
 /* CAROUSEL */
 .ldc-carousel {
+  margin-top: 100px;
+
   width:   20px + 768px + 20px;
   height: (20px + 768px + 20px) / 3.2;
 
   ul li {
     height: (20px + 768px + 20px) / 3.2;
+  }
+
+  .ldc-list-title h4 {
+    font-size: 2em;
+  }
+  .ldc-list-excerpt >a p {
+    font-size: 1em;
   }
 
 }

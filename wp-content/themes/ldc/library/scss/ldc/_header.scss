@@ -1,0 +1,81 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Background
+
+Xx. @todo describe
+
+******************************************************************/
+
+/*********************
+GENERAL STYLES
+*********************/
+
+#inner-header nav {
+	display: table;
+	width: 100%;
+	text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: 700;
+	letter-spacing: 2px;
+	text-align: center;
+	>ul {
+		display: table-row;
+		>li {
+			display: table-cell;
+			float: none; // override /library/scss/breakpoints/_768up.scss:61
+  		padding: 0 12px;
+			>a {
+				outline: none;
+				background-color: rgba( 59, 89,152,0.65);
+        color: rgba(255,255,255,.8);
+				mix-blend-mode: hard-light;
+			  -webkit-touch-callout: none; /* Android and iOS callouts*/
+			    -webkit-user-select: none; /* Chrome, Safari, Opera */
+			     -khtml-user-select: none; /* Konqueror */
+			       -moz-user-select: none; /* Firefox */
+			        -ms-user-select: none; /* IE */
+			            user-select: none;
+			  -webkit-transition: all 0.5s;
+			     -moz-transition: all 0.5s;
+			       -o-transition: all 0.5s;
+			          transition: all 0.5s;
+			}
+			>a:hover, >a:active {
+				background-color: rgba( 59, 89,152,1);
+        color: rgba(255,255,255,1);
+				text-decoration: none;
+			}
+			//@todo possibly `>a[aria-label]` here...
+			// >a[title]:hover:after {
+			//   content: attr(title);
+			//   position: absolute;
+			// }
+			&.current_page_item a {
+				background-color: rgba(165, 89,152,0.95);
+			}
+		}
+		>li:first-child {
+			padding-left: 24px; // follows content margins
+		}
+		>li:last-child {
+			padding-right: 24px; // follows content margins
+		}
+		>li.menu-item-type-custom {
+		}
+	}
+}
+#inner-header nav .dashicons {
+	width: 100%;
+	margin-top: -.1em;
+	font-size: 2em;
+}
+
+/********************
+LINK-SPECIFIC
+********************/
+
+#inner-header nav {
+
+}

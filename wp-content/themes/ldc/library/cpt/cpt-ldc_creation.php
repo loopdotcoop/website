@@ -63,7 +63,7 @@ function ldc_creation_table_orderby($vars) {
 
 //// 20150817^RP  Define the 'Creation' custom post type and categories. 
 //// https://codex.wordpress.org/Function_Reference/register_post_type
-add_action('init', 'ldc_creation_cpt_define');
+add_action('cmb2_init', 'ldc_creation_cpt_define');
 function ldc_creation_cpt_define() {
 
   register_post_type('ldc_creation',

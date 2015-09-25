@@ -6,7 +6,7 @@
 //// or object's contents at a given point in the code. 
 
 
-//// `rp-dump.php` can be `require`d multiple times without causing errors. 
+//// `rp_dump.php` can be `require`d multiple times without causing errors. 
 if (! function_exists('rp_dump')) {
 
   function rp_dump() {

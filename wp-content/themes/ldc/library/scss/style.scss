@@ -42,6 +42,17 @@ the whole project.
 @import "partials/grid";
 
 /*********************
+THEME-SPECIFIC
+Xx @todo describe.
+*********************/
+
+//// 20150921^RP Background images
+@import "ldc/background";
+
+//// 20150921^RP Header
+@import "ldc/header";
+
+/*********************
 IMPORTING MODULES
 Modules are reusable blocks or elements we use throughout the project.
 We can break them up as much as we want or just keep them all in one.
