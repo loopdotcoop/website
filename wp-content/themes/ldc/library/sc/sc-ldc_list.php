@@ -127,6 +127,15 @@ function ldc_list_shortcode($atts = array()) {
       $link_type = ldc_link_to_type($post_link);
       $image_id  = get_post_thumbnail_id($post_id);
 
+      //// Get the post's featured-image, if it has one. 
+      if ($image_id) {
+        $image_meta = wp_get_attachment_metadata($image_id, false);
+        $image_post = get_post($image_id);
+        // echo rp_dump($image_meta);
+      } else {
+        $image_meta = null;
+      }
+
       //// Begin the opening <LI> tag. 
       $out[] = '    <li id="ldc-list-id-' . $post_id . '" class="ldc-list-post '
         . 'ldc-link-type-' . str_replace('.', '-', strtolower($link_type) )
@@ -134,13 +143,18 @@ function ldc_list_shortcode($atts = array()) {
 
       //// If the post has a featured-image, show that as the background, and 
       //// add a data-attribute so that JavaScript can assign the proper height. 
-      if ($image_id) {
-        $image_meta = wp_get_attachment_metadata($image_id, false);
+      if ($image_meta) {
+        if ( 'ldc-carousel' == $atts['class'] && ! is_front_page() ) {
+          $image_filename = $image_meta['sizes']['bones-thumb-600']['file'];
+          $aspect_ratio = 600 / 150;
+        } else {
+          $image_filename = $image_meta['sizes']['medium']['file'];
+          $aspect_ratio = $image_meta['height'] / $image_meta['width'];
+        }
         $out[count($out)-1] .=
-            ' style="background-image:url(\'' . $upload_base . '/' . $image_meta['file'] . '\'); "'
-          . ' data-ldc-aspect-ratio="' . ($image_meta['height'] / $image_meta['width']) . '"'
+            ' style="background-image:url(\'' . $upload_base . '/' . dirname($image_meta['file']) . '/' . $image_filename . '\'); "'
+          . ' data-ldc-aspect-ratio="' . $aspect_ratio . '"'
         ;
-        // echo rp_dump($image_meta);
       }
 
       //// End the opening <LI> tag. 
@@ -167,14 +181,15 @@ function ldc_list_shortcode($atts = array()) {
   //// ...or show an HTML comment. 
   } else {
 
-    $out[] = '    <!-- ' . rp_dev('No posts found', 'Nothing matches'
+    $out[] = '    <!-- ';
+    $out[] = rp_dev('No posts found', 'Nothing matches'
       .                      ' type:'      . $atts['type']
       .                      ' status:'    . $atts['status']
       .                      ' number:'    . $atts['number']
       .                      ' offset:'    . $atts['offset']
       . ($atts['category'] ? ' category:'  . $atts['category'] : '')
-      . ' -->'
     );
+    $out[] = '    -->';
   }
   
   //// Restore the $wp_query and global post data to the original main query. 

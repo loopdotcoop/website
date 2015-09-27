@@ -101,9 +101,18 @@ CAROUSEL
   background-size: cover; /* override 100% in sc-ldc_list */
 }
 
-/* [ldc_list] shortcode */
+.ldc-list-title h4 {
+  font-size: 1.8em;
+}
 .ldc-list-excerpt >a p {
   font-size: 1.25em;
+}
+
+
+/* VIMEO */
+.rp-slug-curious .ldc-vimeo >iframe {
+  width:  300px;
+  height: 169px;
 }
 
 

@@ -1,0 +1,49 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Pages
+
+Xx. @todo describe
+
+******************************************************************/
+
+/*********************
+FRONT-PAGE
+*********************/
+
+.ldc-front-page-spacer {
+	height: 100px;
+}
+
+
+/*********************
+CURIOUS
+*********************/
+
+.rp-slug-curious .entry-content {
+  background-color: green;
+  color: #000;
+  font-size: 1.5em;
+}
+
+.rp-slug-curious .ldc-vimeo {
+  text-align: center;
+}
+
+.rp-slug-curious .ldc-vimeo >iframe {
+  display: inline-block;
+  margin-bottom: 2em;
+}
+
+
+/*********************
+CREATIONS
+*********************/
+
+.rp-slug-creations .entry-content h2 {
+  color: #000;
+  text-align: center;
+  margin-bottom: 200px;
+}
+

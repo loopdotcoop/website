@@ -52,5 +52,19 @@ be seen on the Desktop.
   .ldc-list-excerpt >a p {
     font-size: 1em;
   }
-
 }
+.h-1of3 .ldc-carousel .ldc-list-title h4 {
+  font-size: 1.8em;
+}
+.h-1of3 .ldc-carousel .ldc-list-excerpt >a p {
+  font-size: 0.9em;
+}
+
+
+/* VIMEO */
+.rp-slug-curious .ldc-vimeo >iframe {
+  width:  750px;
+  height: 421px;
+}
+
+
