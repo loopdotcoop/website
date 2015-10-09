@@ -102,10 +102,15 @@ CAROUSEL
 }
 
 .ldc-list-title h4 {
-  font-size: 1.8em;
+  font-size: 1.2em;
 }
 .ldc-list-excerpt >a p {
-  font-size: 1.25em;
+  font-size: 0.8em;
+}
+@media only screen and (min-width: 379px) {
+  .ldc-list-excerpt >a p {
+    font-size: 1em;
+  }
 }
 
 

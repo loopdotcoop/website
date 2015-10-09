@@ -12,65 +12,135 @@ Xx. @todo describe
 GENERAL STYLES
 *********************/
 
-#inner-header nav {
-	display: table;
-	width: 100%;
-	text-transform: uppercase;
+//was: #inner-header nav
+#ldc-nav { // table, at 768up
+  width: 100%;
+  text-transform: uppercase;
   font-size: 1.2em;
   font-weight: 700;
-	letter-spacing: 2px;
-	text-align: center;
-	>ul {
-		display: table-row;
-		>li {
-			display: table-cell;
-			float: none; // override /library/scss/breakpoints/_768up.scss:61
-  		padding: 0 12px;
-			>a {
-				outline: none;
-				background-color: rgba( 59, 89,152,0.65);
-        color: rgba(255,255,255,.8);
-				mix-blend-mode: hard-light;
-			  -webkit-touch-callout: none; /* Android and iOS callouts*/
-			    -webkit-user-select: none; /* Chrome, Safari, Opera */
-			     -khtml-user-select: none; /* Konqueror */
-			       -moz-user-select: none; /* Firefox */
-			        -ms-user-select: none; /* IE */
-			            user-select: none;
-			  -webkit-transition: all 0.5s;
-			     -moz-transition: all 0.5s;
-			       -o-transition: all 0.5s;
-			          transition: all 0.5s;
-			}
-			>a:hover, >a:active {
-				background-color: rgba( 59, 89,152,1);
+  letter-spacing: 2px;
+  text-align: center;
+
+  >ul { // table-row, at 768up
+    padding: 0 24px;
+    >li { // table-cell, at 768up
+      float: left; // just to be explicit - also defined in /library/scss/breakpoints/_768up.scss:61
+      width: 100%; // mobile-widths only
+      visibility: hidden; // prevent collapsed menu items from overlapping the front-page link and show/hide menu button
+      >a {
+        padding: 0 0.75em; // collapsed by default, override `padding: 0.75em`  in /library/scss/breakpoints/_base.scss:231
+        line-height: 0;    // collapsed by default, override `line-height: 1.5` in /library/scss/breakpoints/_base.scss:18
+        background-color: lighten($violet-x, 3%); // collapsed by default
+        color: rgba(255,255,255,0); // collapsed by default
+        outline: none;
+        mix-blend-mode: hard-light;
+        -webkit-touch-callout: none; /* Android and iOS callouts*/
+          -webkit-user-select: none; /* Chrome, Safari, Opera */
+           -khtml-user-select: none; /* Konqueror */
+             -moz-user-select: none; /* Firefox */
+              -ms-user-select: none; /* IE */
+                  user-select: none;
+        -webkit-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s, visibility 0.8s;
+           -moz-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s, visibility 0.8s;
+             -o-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s, visibility 0.8s;
+                transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s, visibility 0.8s;
+      }
+      >a:hover, >a:active {
+        background-color: lighten($violet-x, 7%);
+        color: rgba(255,255,255,0);
+        text-decoration: none;
+      }
+      &.current_page_item a {
+        background-color: rgba(165, 89,152,0.00);
+      }
+      //@todo possibly `>a[aria-label]` here...
+      // >a[title]:hover:after {
+      //   content: attr(title);
+      //   position: absolute;
+      // }
+    }
+    >li.menu-item-type-custom { // social media icons
+      display: inline-block;
+      width:   50%;
+      >a >span {
+        width:      100%;
+        margin-top:  -0.1em;
+        padding:      0 0.75em;
+        font-size:    2em;
+      }
+    }
+    >li:first-child, // front-page link
+    >li.menu-item-type-custom.ldc-collapse { // show/hide menu button
+      display:    inline-block;
+      visibility: visible;
+      >a { // front-page link
+        background-color: lighten($violet, 3%); // not collapsed
+        color: rgba(255,255,255,0.8);             // not collapsed
+      }
+      >a:hover, >a:active {
+        background-color: lighten($violet, 7%);
         color: rgba(255,255,255,1);
-				text-decoration: none;
-			}
-			//@todo possibly `>a[aria-label]` here...
-			// >a[title]:hover:after {
-			//   content: attr(title);
-			//   position: absolute;
-			// }
-			&.current_page_item a {
-				background-color: rgba(165, 89,152,0.95);
-			}
-		}
-		>li:first-child {
-			padding-left: 24px; // follows content margins
-		}
-		>li:last-child {
-			padding-right: 24px; // follows content margins
-		}
-		>li.menu-item-type-custom {
-		}
-	}
+        text-decoration: none;
+      }
+      &.current_page_item a {
+        background-color: rgba(165, 89,152,0.95);
+      }
+    }
+    >li:first-child { // front-page link
+      width:      75%;
+      text-align: left;
+      >a { // front-page link
+        padding: 0.75em;  // not collapsed
+        line-height: 1.5; // not collapsed
+      }
+    }
+    >li.menu-item-type-custom.ldc-collapse { // show/hide menu button
+      width:      25%;
+      >a {
+        padding: 0.75em 0 0.75em 3px; // not collapsed - 3px tidies up centering properly
+        // margin-top: -0.5em;
+        line-height: 1.5; // not collapsed
+        >span {
+          height:      1px; // not collapsed
+          padding:     0;   // not collapsed
+        }
+      }
+    }
+  }
 }
-#inner-header nav .dashicons {
-	width: 100%;
-	margin-top: -.1em;
-	font-size: 2em;
+
+#ldc-nav.active {
+  >ul { // table-row, at 768up
+    >li { // table-cell, at 768up
+      visibility: visible; // collapsed menu items now overlapping the front-page link and show/hide menu button
+      >a {
+        padding:     0.75em; // not collapsed
+        line-height: 1.5;    // not collapsed
+        background-color: lighten($violet, 3%); // not collapsed
+        color: rgba(255,255,255,0.8);           // not collapsed
+        -webkit-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s;
+           -moz-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s;
+             -o-transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s;
+                transition: color 0.4s, background-color 0.8s, padding 0.8s, line-height 0.8s;
+      }
+      >a:hover, >a:active {
+        background-color: lighten($violet, 7%); // not collapsed
+        color: rgba(255,255,255,1.0);           // not collapsed
+      }
+      &.current_page_item a {
+        background-color: rgba(165, 89,152,0.95); // not collapsed
+      }
+    }
+    >li.menu-item-type-custom.ldc-collapse { // show/hide menu button
+      >a >span {
+        padding: 0; // not collapsed
+      }
+    }
+  }
 }
+
+
+
 
 /********************
 LINK-SPECIFIC

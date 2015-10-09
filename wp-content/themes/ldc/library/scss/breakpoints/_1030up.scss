@@ -14,22 +14,19 @@ be seen on the Desktop.
 }
 
 
-/* FRONT-PAGE */
-.ldc-front-page-spacer {
-  height: 300px;
-}
-
-
 /* HEADER */
 #inner-header nav {
-  font-size: 1em;
+  font-size: 0.95em;
   >ul >li {
-    padding: 0 12px;
+    padding: 0 9px;
   }
 }
 
 
 /* [ldc_list] shortcode */
+.ldc-list-title h4 {
+  font-size: 1.4em;
+}
 .ldc-list-excerpt >a p {
   font-size: 0.8046875em;
 }
@@ -53,11 +50,17 @@ be seen on the Desktop.
     font-size: 1em;
   }
 }
+
+
+/* FRONT PAGE */
 .h-1of3 .ldc-carousel .ldc-list-title h4 {
   font-size: 1.8em;
 }
 .h-1of3 .ldc-carousel .ldc-list-excerpt >a p {
   font-size: 0.9em;
+}
+.ldc-front-page-spacer {
+  height: 300px;
 }
 
 

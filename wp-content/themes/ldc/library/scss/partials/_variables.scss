@@ -37,12 +37,15 @@ $green:             #7dd667;
 $bones-pink:        #f01d4f;
 $blue:              #2980b9;
 
-$link-color:        $bones-pink;
+$link-color:        $white;
 $link-hover:        darken($link-color, 9%);
 
 $border-color:      #ccc;
 $disabled-gray:     #cfcfcf;
 
+
+$violet:            rgba(128, 89,152,0.95);
+$violet-x:          rgba(128, 89,152,0.00);
 
 /*
 Here's a great tutorial on how to

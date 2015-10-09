@@ -14,20 +14,13 @@ on larger screens.
 }
 
 
-/* FRONT-PAGE */
-.ldc-front-page-spacer {
-  height: 540px;
-}
-
-
 /* [ldc_list] shortcode */
 .ldc-list-title h4 {
-  font-size: 1.4em;
+  font-size: 2.3em;
 }
 .ldc-list-excerpt >a p {
   font-size: 1.2em;
 }
-
 
 
 /* CAROUSEL */
@@ -41,4 +34,16 @@ on larger screens.
     height: (20px + 1240px + 20px) / 3.2;
   }
 
+  .ldc-list-title h4 {
+    font-size: 3em;
+  }
+
 }
+
+
+/* FRONT-PAGE */
+.ldc-front-page-spacer {
+  height: 540px;
+}
+
+

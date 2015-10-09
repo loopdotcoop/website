@@ -185,46 +185,51 @@ You can't use @extend within media queries
 anymore, so just be aware that if you drop
 them in here, they won't work.
 */
-/* FRONT-PAGE */
-/* line 27, ../scss/breakpoints/_481up.scss */
-.ldc-front-page-spacer {
-  height: 130px;
-}
-
 /* CAROUSEL */
-/* line 33, ../scss/breakpoints/_481up.scss */
+/* line 27, ../scss/breakpoints/_481up.scss */
 .ldc-carousel {
   margin-top: 60px;
 }
 
+/* line 31, ../scss/breakpoints/_481up.scss */
+.ldc-list-title h4 {
+  font-size: 1.8em;
+}
+
 /* VIMEO */
-/* line 39, ../scss/breakpoints/_481up.scss */
+/* line 37, ../scss/breakpoints/_481up.scss */
 .rp-slug-curious .ldc-vimeo > iframe {
   width: 400px;
   height: 225px;
+}
+
+/* FRONT-PAGE */
+/* line 44, ../scss/breakpoints/_481up.scss */
+.ldc-front-page-spacer {
+  height: 130px;
 }
 
 /*********************
 NAVIGATION STYLES
 *********************/
 /* .menu is clearfixed inside mixins.scss */
-/* line 52, ../scss/breakpoints/_481up.scss */
+/* line 56, ../scss/breakpoints/_481up.scss */
 .menu {
   /* end .menu ul */
 }
-/* line 53, ../scss/breakpoints/_481up.scss */
+/* line 57, ../scss/breakpoints/_481up.scss */
 .menu ul {
   /* end .menu ul li */
   /* highlight current page */
   /* end current highlighters */
 }
-/* line 54, ../scss/breakpoints/_481up.scss */
+/* line 58, ../scss/breakpoints/_481up.scss */
 .menu ul li {
   /*
   plan your menus and drop-downs wisely.
   */
 }
-/* line 55, ../scss/breakpoints/_481up.scss */
+/* line 59, ../scss/breakpoints/_481up.scss */
 .menu ul li a {
   /*
   you can use hover styles here even though this size
@@ -237,23 +242,23 @@ NAVIGATION STYLES
 POSTS & CONTENT STYLES
 *********************/
 /* entry content */
-/* line 100, ../scss/breakpoints/_481up.scss */
+/* line 104, ../scss/breakpoints/_481up.scss */
 .entry-content {
   /* at this larger size, we can start to align images */
 }
-/* line 104, ../scss/breakpoints/_481up.scss */
+/* line 108, ../scss/breakpoints/_481up.scss */
 .entry-content .alignleft, .entry-content img.alignleft {
   margin-right: 1.5em;
   display: inline;
   float: left;
 }
-/* line 109, ../scss/breakpoints/_481up.scss */
+/* line 113, ../scss/breakpoints/_481up.scss */
 .entry-content .alignright, .entry-content img.alignright {
   margin-left: 1.5em;
   display: inline;
   float: right;
 }
-/* line 114, ../scss/breakpoints/_481up.scss */
+/* line 118, ../scss/breakpoints/_481up.scss */
 .entry-content .aligncenter, .entry-content img.aligncenter {
   margin-right: auto;
   margin-left: auto;
@@ -294,46 +299,107 @@ LAYOUT & GRID STYLES
   width: 722px;
 }
 
-/* FRONT-PAGE */
-/* line 32, ../scss/breakpoints/_768up.scss */
-.ldc-front-page-spacer {
-  height: 240px;
-}
-
 /* HEADER */
-/* line 38, ../scss/breakpoints/_768up.scss */
-#inner-header nav {
+/* line 32, ../scss/breakpoints/_768up.scss */
+#ldc-nav {
+  display: table;
   font-size: 0.8em;
 }
-/* line 40, ../scss/breakpoints/_768up.scss */
-#inner-header nav > ul > li {
-  padding: 0 8px;
+/* line 35, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul {
+  display: table-row;
+  padding: 0;
+}
+/* line 38, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li {
+  display: table-cell;
+  float: none;
+  width: auto;
+  visibility: visible;
+  padding: 0 7px;
+}
+/* line 44, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li:first-child {
+  display: table-cell;
+  width: auto;
+  padding-left: 24px;
+  text-align: center;
+}
+/* line 50, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li:last-child {
+  padding-right: 24px;
+}
+/* line 53, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li.menu-item-type-custom {
+  display: table-cell;
+  width: 1px;
+  float: none;
+}
+/* line 57, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li.menu-item-type-custom > a {
+  padding: 0.75em 0;
+}
+/* line 59, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li.menu-item-type-custom > a > span {
+  padding: 0 0.3em 0 0.4em;
+  text-align: center;
+}
+/* line 65, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li.menu-item-type-custom.ldc-collapse {
+  display: none;
+}
+/* line 68, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li > a {
+  padding: 0.75em;
+  line-height: 1.5;
+  background-color: rgba(136, 95, 161, 0.95);
+  color: rgba(255, 255, 255, 0.8);
+}
+/* line 74, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li > a:hover, #ldc-nav > ul > li > a:active {
+  background-color: rgba(146, 108, 169, 0.95);
+  color: white;
+}
+/* line 78, ../scss/breakpoints/_768up.scss */
+#ldc-nav > ul > li.current_page_item a {
+  background-color: rgba(165, 89, 152, 0.95);
 }
 
 /* CAROUSEL */
-/* line 47, ../scss/breakpoints/_768up.scss */
+/* line 87, ../scss/breakpoints/_768up.scss */
 .ldc-carousel {
   margin-top: 80px;
   width: 674px;
   height: 210.625px;
 }
-/* line 53, ../scss/breakpoints/_768up.scss */
+/* line 93, ../scss/breakpoints/_768up.scss */
 .ldc-carousel ul li {
   height: 210.625px;
 }
 
-/* line 58, ../scss/breakpoints/_768up.scss */
+/* line 98, ../scss/breakpoints/_768up.scss */
+.ldc-list-title h4 {
+  font-size: 1.8em;
+}
+
+/* FRONT PAGE */
+/* line 104, ../scss/breakpoints/_768up.scss */
 .h-1of3 .ldc-carousel .ldc-list-title h4 {
   font-size: 1.4em;
 }
 
-/* line 61, ../scss/breakpoints/_768up.scss */
+/* line 107, ../scss/breakpoints/_768up.scss */
 .h-1of3 .ldc-carousel .ldc-list-excerpt > a p {
   font-size: 0.7em;
 }
 
+/* line 110, ../scss/breakpoints/_768up.scss */
+.ldc-front-page-spacer {
+  height: 240px;
+}
+
 /* VIMEO */
-/* line 67, ../scss/breakpoints/_768up.scss */
+/* line 116, ../scss/breakpoints/_768up.scss */
 .rp-slug-curious .ldc-vimeo > iframe {
   width: 500px;
   height: 281px;
@@ -345,19 +411,19 @@ HEADER STYLES
 /*********************
 NAVIGATION STYLES
 *********************/
-/* line 85, ../scss/breakpoints/_768up.scss */
+/* line 134, ../scss/breakpoints/_768up.scss */
 .nav {
   border: 0;
   /* end .menu ul li */
   /* highlight current page */
   /* end current highlighters */
 }
-/* line 87, ../scss/breakpoints/_768up.scss */
+/* line 136, ../scss/breakpoints/_768up.scss */
 .nav ul {
   background: #323944;
   margin-top: 0;
 }
-/* line 91, ../scss/breakpoints/_768up.scss */
+/* line 140, ../scss/breakpoints/_768up.scss */
 .nav li {
   float: left;
   position: relative;
@@ -366,7 +432,7 @@ NAVIGATION STYLES
   */
   /* showing sub-menus */
 }
-/* line 95, ../scss/breakpoints/_768up.scss */
+/* line 144, ../scss/breakpoints/_768up.scss */
 .nav li a {
   border-bottom: 0;
   /*
@@ -374,12 +440,12 @@ NAVIGATION STYLES
   has the possibility of being a mobile device.
   */
 }
-/* line 102, ../scss/breakpoints/_768up.scss */
+/* line 151, ../scss/breakpoints/_768up.scss */
 .nav li a:hover, .nav li a:focus {
   color: white;
   text-decoration: underline;
 }
-/* line 115, ../scss/breakpoints/_768up.scss */
+/* line 164, ../scss/breakpoints/_768up.scss */
 .nav li ul.sub-menu,
 .nav li ul.children {
   margin-top: 0;
@@ -390,7 +456,7 @@ NAVIGATION STYLES
   z-index: 8999;
   /* highlight sub-menu current page */
 }
-/* line 123, ../scss/breakpoints/_768up.scss */
+/* line 172, ../scss/breakpoints/_768up.scss */
 .nav li ul.sub-menu li,
 .nav li ul.children li {
   /*
@@ -399,7 +465,7 @@ NAVIGATION STYLES
   for usability. k, bai.
   */
 }
-/* line 125, ../scss/breakpoints/_768up.scss */
+/* line 174, ../scss/breakpoints/_768up.scss */
 .nav li ul.sub-menu li a,
 .nav li ul.children li a {
   padding-left: 10px;
@@ -408,18 +474,18 @@ NAVIGATION STYLES
   width: 180px;
   border-bottom: 1px solid #ccc;
 }
-/* line 142, ../scss/breakpoints/_768up.scss */
+/* line 191, ../scss/breakpoints/_768up.scss */
 .nav li ul.sub-menu li:last-child a,
 .nav li ul.children li:last-child a {
   border-bottom: 0;
 }
-/* line 152, ../scss/breakpoints/_768up.scss */
+/* line 201, ../scss/breakpoints/_768up.scss */
 .nav li ul.sub-menu li ul,
 .nav li ul.children li ul {
   top: 0;
   left: 100%;
 }
-/* line 167, ../scss/breakpoints/_768up.scss */
+/* line 216, ../scss/breakpoints/_768up.scss */
 .nav li:hover > ul {
   top: auto;
   visibility: visible;
@@ -429,28 +495,28 @@ NAVIGATION STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-/* line 187, ../scss/breakpoints/_768up.scss */
+/* line 236, ../scss/breakpoints/_768up.scss */
 .sidebar {
   margin-top: 2.2em;
 }
 
-/* line 191, ../scss/breakpoints/_768up.scss */
+/* line 240, ../scss/breakpoints/_768up.scss */
 .widgettitle {
   border-bottom: 2px solid #444;
   margin-bottom: 0.75em;
 }
 
-/* line 196, ../scss/breakpoints/_768up.scss */
+/* line 245, ../scss/breakpoints/_768up.scss */
 .widget {
   padding: 0 10px;
   margin: 2.2em 0;
 }
-/* line 201, ../scss/breakpoints/_768up.scss */
+/* line 250, ../scss/breakpoints/_768up.scss */
 .widget ul li {
   margin-bottom: 0.75em;
   /* deep nesting */
 }
-/* line 209, ../scss/breakpoints/_768up.scss */
+/* line 258, ../scss/breakpoints/_768up.scss */
 .widget ul li ul {
   margin-top: 0.75em;
   padding-left: 1em;
@@ -475,7 +541,7 @@ you'll probably need to do quite a bit
 of overriding here if you styled them for
 mobile. Make sure to double check these!
 */
-/* line 317, ../scss/breakpoints/_768up.scss */
+/* line 366, ../scss/breakpoints/_768up.scss */
 .footer-links ul li {
   /*
   be careful with the depth of your menus.
@@ -500,48 +566,48 @@ be seen on the Desktop.
   width: 856px;
 }
 
-/* FRONT-PAGE */
-/* line 18, ../scss/breakpoints/_1030up.scss */
-.ldc-front-page-spacer {
-  height: 300px;
-}
-
 /* HEADER */
-/* line 24, ../scss/breakpoints/_1030up.scss */
+/* line 18, ../scss/breakpoints/_1030up.scss */
 #inner-header nav {
-  font-size: 1em;
+  font-size: 0.95em;
 }
-/* line 26, ../scss/breakpoints/_1030up.scss */
+/* line 20, ../scss/breakpoints/_1030up.scss */
 #inner-header nav > ul > li {
-  padding: 0 12px;
+  padding: 0 9px;
 }
 
 /* [ldc_list] shortcode */
-/* line 33, ../scss/breakpoints/_1030up.scss */
+/* line 27, ../scss/breakpoints/_1030up.scss */
+.ldc-list-title h4 {
+  font-size: 1.4em;
+}
+
+/* line 30, ../scss/breakpoints/_1030up.scss */
 .ldc-list-excerpt > a p {
   font-size: 0.8046875em;
 }
 
 /* CAROUSEL */
-/* line 39, ../scss/breakpoints/_1030up.scss */
+/* line 36, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel {
   margin-top: 100px;
   width: 808px;
   height: 252.5px;
 }
-/* line 45, ../scss/breakpoints/_1030up.scss */
+/* line 42, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel ul li {
   height: 252.5px;
 }
-/* line 49, ../scss/breakpoints/_1030up.scss */
+/* line 46, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel .ldc-list-title h4 {
   font-size: 2em;
 }
-/* line 52, ../scss/breakpoints/_1030up.scss */
+/* line 49, ../scss/breakpoints/_1030up.scss */
 .ldc-carousel .ldc-list-excerpt > a p {
   font-size: 1em;
 }
 
+/* FRONT PAGE */
 /* line 56, ../scss/breakpoints/_1030up.scss */
 .h-1of3 .ldc-carousel .ldc-list-title h4 {
   font-size: 1.8em;
@@ -552,8 +618,13 @@ be seen on the Desktop.
   font-size: 0.9em;
 }
 
+/* line 62, ../scss/breakpoints/_1030up.scss */
+.ldc-front-page-spacer {
+  height: 300px;
+}
+
 /* VIMEO */
-/* line 65, ../scss/breakpoints/_1030up.scss */
+/* line 68, ../scss/breakpoints/_1030up.scss */
 .rp-slug-curious .ldc-vimeo > iframe {
   width: 750px;
   height: 421px;

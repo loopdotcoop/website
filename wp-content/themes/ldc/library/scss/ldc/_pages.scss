@@ -13,7 +13,13 @@ FRONT-PAGE
 *********************/
 
 .ldc-front-page-spacer {
-	height: 100px;
+  height: 100px;
+}
+.ldc-front-page-cta {
+  text-align: center;
+}
+.ldc-front-page-cta .ldc-carousel {
+  margin-bottom: 12px;
 }
 
 

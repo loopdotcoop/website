@@ -15,13 +15,19 @@ on larger screens.
 }
 
 
-/* FRONT-PAGE */
-.ldc-front-page-spacer {
-  height: 400px;
+/* HEADER */
+#inner-header nav {
+  font-size: 1.2em;
+  >ul >li {
+    padding: 0 12px;
+  }
 }
 
 
 /* [ldc_list] shortcode */
+.ldc-list-title h4 {
+  font-size: 1.8em;
+}
 .ldc-list-excerpt >a p {
   font-size: 0.96875em;
 }
@@ -46,12 +52,20 @@ on larger screens.
   }
 
 }
+
+
+/* FRONT PAGE */
 .h-1of3 .ldc-carousel .ldc-list-title h4 {
   font-size: 2.2em;
 }
 .h-1of3 .ldc-carousel .ldc-list-excerpt >a p {
   font-size: 1.1em;
 }
+.ldc-front-page-spacer {
+  height: 400px;
+}
+
+
 
 
 

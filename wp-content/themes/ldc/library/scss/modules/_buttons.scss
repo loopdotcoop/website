@@ -25,20 +25,20 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 *********************/
 
 %btn {
-  display: inline-block;
-  position: relative;
-  font-family: $sans-serif;
+  display: block;
+  font-family: $lato;
   text-decoration: none;
-  color: $white;
-  font-size: 0.9em;
-  font-size: 34px;
+  color: rgba(255,255,255,.8);
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   line-height: 34px;
-  font-weight: normal;
-  padding: 0 24px;
-  border-radius: 4px;
+  padding: 0.5em 1em;
+  border-radius: 0;
   border: 0;
   cursor: pointer;
-  @include transition(background-color 0.14s ease-in-out);
+  @include transition(all 0.4s);
 
   // hovering on the btn
   &:hover, &:focus {
@@ -61,15 +61,14 @@ and it will create a button dependant on those variables.
 */
 .blue-btn {
   @extend %btn; // here we load the btn defaults
-  background-color: $blue;
+  background-color: lighten($violet, 3%);
+  mix-blend-mode: hard-light;
 
   &:hover,
+  &:active,
   &:focus {
-    background-color: darken($blue, 4%);
+    background-color: lighten($violet, 5%);
+    color: rgba(255,255,255,1);
   } // end hover
-
-  &:active {
-    background-color: darken($blue, 5%);
-  } // end active
 
 } // end blue button
