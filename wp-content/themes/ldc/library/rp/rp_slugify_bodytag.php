@@ -1,10 +1,10 @@
 <?php
 //// 20150921^RP 0.0.1
 
-//// `rp_slugify_bodytag()` adds a @todo describe 
+//// `rp_slugify_bodytag()` adds a @todo describe
 
 
-//// `rp_slugify_bodytag.php` can be `require`d multiple times without causing errors. 
+//// `rp_slugify_bodytag.php` can be `require`d multiple times without causing errors.
 if (! function_exists('rp_slugify_bodytag')) {
 
   //// https://codex.wordpress.org/Function_Reference/body_class
