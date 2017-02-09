@@ -1,23 +1,23 @@
 <?php
 
-//// `functions.php` is loaded early in WordPress. It's useful for defining 
-//// short custom functions, and defining things like thumbnail sizes, header 
-//// images, sidebars, and comments. 
+//// `functions.php` is loaded early in WordPress. It's useful for defining
+//// short custom functions, and defining things like thumbnail sizes, header
+//// images, sidebars, and comments.
 
 
-//// Load the Bones core. 
+//// Load the Bones core.
 require_once 'library/bones.php';
 
-//// Load development utilities. 
+//// Load development utilities.
 require_once 'library/rp/rp_dev_style.php'; // add `<STYLE>` to the `<HEAD>`
 require_once 'library/rp/rp_dev.php';       // `rp_dev()`
 require_once 'library/rp/rp_dump.php';      // `rp_dump()`
 
-//// Load various filters and actions, and enqueue scripts and stylesheets. 
+//// Load various filters and actions, and enqueue scripts and stylesheets.
 require_once 'library/rp/rp_slugify_bodytag.php'; // `rp_slugify_bodytag()`
 require_once 'library/rp/rp_enqueue.php';         // `rp_enqueue()`
 
-//// Load helper functions. 
+//// Load helper functions.
 require_once 'library/fn/fn-ldc_link_to_type.php'; // `ldc_link_to_type()`
 
 
@@ -31,13 +31,13 @@ LAUNCH BONES
 Let's get everything up and running.
 *********************/
 
-//// Run basic setup, registration, and init actions for the theme. 
-//// Called during each page load, after the theme is initialized. 
+//// Run basic setup, registration, and init actions for the theme.
+//// Called during each page load, after the theme is initialized.
 //// https://codex.wordpress.org/Plugin_API/Action_Reference/after_setup_theme
 add_action('after_setup_theme', 'ldc_theme_init');
 function ldc_theme_init() {
 
-  //// Eg allow /sc/sc-ldc_list.php to get the theme version. 
+  //// Eg allow /sc/sc-ldc_list.php to get the theme version.
   global $ldc_theme;
   $ldc_theme = wp_get_theme();
 
@@ -51,17 +51,17 @@ function ldc_theme_init() {
 
 
 
-  //// Init CMB2. 
-  require_once 'library/cmb2/init.php';
+  //// Init CMB2.
+  // require_once 'library/cmb2/init.php';
 
 
-  //// Load custom post types. 
+  //// Load custom post types.
   require_once 'library/cpt/cpt-ldc_chatter.php';
   require_once 'library/cpt/cpt-ldc_creation.php';
   require_once 'library/cpt/cpt-ldc_event.php';
 
 
-  //// Load shortcodes. 
+  //// Load shortcodes.
   require_once 'library/sc/sc-ldc_list.php';
 
 
@@ -148,14 +148,14 @@ new image size.
 
 /************* THEME CUSTOMIZE *********************/
 
-/* 
+/*
   A good tutorial for creating your own Sections, Controls and Settings:
   http://code.tutsplus.com/series/a-guide-to-the-wordpress-theme-customizer--wp-33722
-  
+
   Good articles on modifying the default options:
   http://natko.com/changing-default-wordpress-theme-customization-api-sections/
   http://code.tutsplus.com/tutorials/digging-into-the-theme-customizer-components--wp-27162
-  
+
   To do:
   - Create a js for the postmessage transport method
   - Create some sanitize functions to sanitize inputs
@@ -165,7 +165,7 @@ new image size.
 function bones_theme_customizer($wp_customize) {
   // $wp_customize calls go here.
   //
-  // Uncomment the below lines to remove the default customize sections 
+  // Uncomment the below lines to remove the default customize sections
 
   // $wp_customize->remove_section('title_tagline');
   // $wp_customize->remove_section('colors');
@@ -175,7 +175,7 @@ function bones_theme_customizer($wp_customize) {
 
   // Uncomment the below lines to remove the default controls
   // $wp_customize->remove_control('blogdescription');
-  
+
   // Uncomment the following to change the default section titles
   // $wp_customize->get_section('colors')->title = __( 'Theme Colors' );
   // $wp_customize->get_section('background_image')->title = __( 'Images' );

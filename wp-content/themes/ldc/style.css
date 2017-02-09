@@ -1,8 +1,8 @@
 /******************************************************************
-Version: 0.1.0
+Version: 0.1.3
 Theme Name: Ldc
 Theme URI: https://github.com/loopdotcoop/website
-Description: The Loop.Coop website theme, based on the Bones Development Theme. 
+Description: The Loop.Coop website theme, based on the Bones Development Theme.
 Author: Rich Plastow
 Author URI: http://richplastow.com/
 BonesVersion: 1.7
@@ -69,4 +69,3 @@ compass watch library/scss/
 .sticky {}
 .gallery-caption {}
 .bypostauthor {}
-
